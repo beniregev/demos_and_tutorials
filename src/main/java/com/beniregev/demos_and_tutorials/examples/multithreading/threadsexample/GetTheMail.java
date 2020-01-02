@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.threadsexample;
+package com.beniregev.demos_and_tutorials.examples.multithreading.threadsexample;
 
 // You can use the Runnable interface instead of
 // wasting your 1 class extension.

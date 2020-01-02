@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.threadsexample;
+package com.beniregev.demos_and_tutorials.examples.multithreading.threadsexample;
 
 // By using threads you can execute multiple blocks
 // of code at the same time. This program will output 

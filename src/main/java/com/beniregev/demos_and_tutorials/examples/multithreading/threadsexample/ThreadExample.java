@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.threadsexample;
+package com.beniregev.demos_and_tutorials.examples.multithreading.threadsexample;
 
 public class ThreadExample {
     public static void main(String[] args){
