@@ -17,6 +17,9 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-cloud.version>Hoxton.RC1</spring-cloud.version>
+        <javafaker.version>0.17.2</javafaker.version>
+        <mapdb.version>3.0.7</mapdb.version>
+        <android-json.version>0.0.20131108.vaadin1</android-json.version>
     </properties>
 
     <dependencies>
@@ -94,7 +97,7 @@
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
-            <version>0.17.2</version>
+            <version>${javafaker.version}</version>
         </dependency>
         <dependency>
             <groupId>io.projectreactor</groupId>
@@ -105,7 +108,7 @@
         <dependency>
             <groupId>org.mapdb</groupId>
             <artifactId>mapdb</artifactId>
-            <version>3.0.7</version>
+            <version>${mapdb.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.amqp</groupId>
@@ -116,6 +119,11 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin.external.google</groupId>
+            <artifactId>android-json</artifactId>
+            <version>${android-json.version}</version>
         </dependency>
     </dependencies>
 
