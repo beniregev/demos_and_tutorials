@@ -30,17 +30,10 @@ public class MapDbWithThreadsExample {
     public static void main(String[] args) {
         MapDbWithThreadsExample example = new MapDbWithThreadsExample();
 
-        example.setLastNames(
-                example.getLastNames().stream()
-                        .sorted(Comparator.naturalOrder())
-                        .distinct()
-                        .collect(Collectors.toList())
-        );
-
         System.out.println("First Names size() = " + example.getFirstNames().size() + "\n" +
-                        "Middle Names size() = " + example.getMiddleNames().size() + "\n" +
-                        "Last Names size() = " + example.getLastNames().size()
-                );
+                "Middle Names size() = " + example.getMiddleNames().size() + "\n" +
+                "Last Names size() = " + example.getLastNames().size()
+        );
 
         DB dbAgentsNames = DBMaker.fileDB("agentsNames.db")
                 .cleanerHackEnable()
