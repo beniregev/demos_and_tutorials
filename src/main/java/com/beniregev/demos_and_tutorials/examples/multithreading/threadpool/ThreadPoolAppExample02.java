@@ -12,14 +12,19 @@ package com.beniregev.demos_and_tutorials.examples.multithreading.threadpool;
  */
 public class ThreadPoolAppExample02 {
     static class Task02 implements Runnable {
+        private int code;
+        public Task02(int code) {
+            this.code = code;
+        }
+
         public void run() {
-            System.out.println("^^ Thread Name: " + Thread.currentThread().getName());  //  Thread Name: main
+            System.out.println("^^ (" + this.code + ") Thread Name: " + Thread.currentThread().getName());  //  Thread Name: main
         }
     }
 
     public static void main(String[] args) {
         for (int i=0; i< 10; i++) {
-            Thread thread = new Thread(new Task02());
+            Thread thread = new Thread(new Task02(i));
             thread.start();
         }
         System.out.println(">> Thread Name: " + Thread.currentThread().getName());  //  Thread Name: Thread-0
