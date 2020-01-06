@@ -160,7 +160,30 @@ public class TimeApiExample {
         example.convertStringToLocalDateTime("2019-12-16 23:24:25");
         example.getEndOfYearLocalDateTime();
         example.demoStringBuffer();
+        example.spreadCallsInDay(22);
     }
+
+    public void spreadCallsInDay(int callsPerDay) {
+        final int HOURS_PER_DAY = 24;
+        final int MINUTES_PER_HOUR = 60;
+        final int AVERAGE_CALL_DURATION_IN_MINUTES = 5;
+        final int numberOfMinutesPerDay = HOURS_PER_DAY * MINUTES_PER_HOUR;
+        final int timeIntervalBetweenCallInMinutes = (numberOfMinutesPerDay - (AVERAGE_CALL_DURATION_IN_MINUTES * (callsPerDay + 1))) / (callsPerDay + 1);
+        LocalDate dateOfCall = LocalDate.now();
+        LocalTime timeCallStarted = LocalTime.MIN.plusMinutes(timeIntervalBetweenCallInMinutes);
+        for (int i=1; i<=callsPerDay; i++) {
+            System.out.println("Call #" + i + ": \n\tStarted at " + timeCallStarted +
+                            "\n\tEnded at " + timeCallStarted.plusMinutes(AVERAGE_CALL_DURATION_IN_MINUTES) +
+                            "\n\tContact Start Time: " + timeCallStarted +
+                            "\n\tContact End Time: " + timeCallStarted.plusSeconds(150)
+            );
+            System.out.println("dateOfCall = " + dateOfCall + " ; timeCallStarted = " + timeCallStarted);
+            timeCallStarted = timeCallStarted.plusMinutes(AVERAGE_CALL_DURATION_IN_MINUTES).plusMinutes(timeIntervalBetweenCallInMinutes);
+            System.out.println("AFTER: dateOfCall = " + dateOfCall + " ; timeCallStarted = " + timeCallStarted);
+        }
+
+    }
+
 
     public void convertStringToLocalDateTime(String stringDateTime) {
         System.out.println("String Date: \"" + stringDateTime.substring(0, stringDateTime.indexOf(' ')) + "\"");
