@@ -335,16 +335,6 @@ public class MapDBExample {
         db.close();
     }
 
-    public void memoryMapWithExpirationBySizeWriteTimeAccessTime() {
-//        DB db;
-//        Map map = db.hashMap("cache")   /* .hashMapCreate() */
-//                .expireAfterGet(10, TimeUnit.HOURS)
-//                .expireMapSize(16500000)
-//                .expireAfterWrite(30, TimeUnit.HOURS)
-//                .expireAfterAccess(10, TimeUnit.HOURS)
-//                .make();
-    }
-
     public static void main(String[] args) {
         MapDBExample example = new MapDBExample();
         example.simpleHashMapMemoryDBExample();
