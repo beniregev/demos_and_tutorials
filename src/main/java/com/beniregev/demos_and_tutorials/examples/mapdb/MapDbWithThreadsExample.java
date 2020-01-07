@@ -1,6 +1,5 @@
 package com.beniregev.demos_and_tutorials.examples.mapdb;
 
-import com.beniregev.demos_and_tutorials.examples.multithreading.threadpool.ThreadPoolAppExample02;
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.HTreeMap;

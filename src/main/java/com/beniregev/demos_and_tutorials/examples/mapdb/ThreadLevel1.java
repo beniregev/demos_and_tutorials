@@ -1,8 +1,6 @@
 package com.beniregev.demos_and_tutorials.examples.mapdb;
 
 import org.mapdb.HTreeMap;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
