@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.mapdb;
+package com.beniregev.demos_and_tutorials.examples.mapdb.threads;
 
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
@@ -8,7 +8,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -26,6 +29,8 @@ public class MapDbWithThreadsExample {
     private static final int MINUTES_PER_DAY = 1_440;
     private static final LocalDate dateFrom = LocalDate.parse("2019-12-01");
     private static final LocalDate dateTo = LocalDate.parse("2019-12-05");
+
+    public static volatile List<String> listOfStrings = new ArrayList<>();
 
     private boolean runInSeparateThread;
     private Runnable r;
@@ -46,21 +51,22 @@ public class MapDbWithThreadsExample {
                 .cleanerHackEnable()
                 .closeOnJvmShutdown()
                 .make();
+
         HTreeMap<String, Integer> mapAgentsNames = example.generateListOfAgents(example.NUMBER_OF_AGENTS, 100, dbAgentsNames);
         System.out.println("mapAgentsNames.sizeLong() = " + mapAgentsNames.sizeLong());
 
         System.out.println("ISO_LOCAL_DATE = " + dateFrom.format(DateTimeFormatter.ISO_LOCAL_DATE));
 
-        List<String> listOfDates = example.generateListOfDates(dateFrom,dateTo);
+        List<LocalDate> listOfDates = example.generateListOfDates(dateFrom,dateTo);
         listOfDates.forEach(System.out::println);
 
-        List<String> listOfCallsTimes = example.generateListOfCallsPerDay(CALLS_PER_DAY, DURATION_OF_CALL_IN_MINUTES);
+        List<LocalTime> listOfCallsTimes = example.generateListOfCallsPerDay(CALLS_PER_DAY, DURATION_OF_CALL_IN_MINUTES);
         listOfCallsTimes.forEach(System.out::println);
 
-        List<String> listOfCallsPerAgent = new ArrayList<>();
-        for (String date : listOfDates) {
-            for (String time : listOfCallsTimes) {
-                listOfCallsPerAgent.add(date + " " + time);
+        List<LocalDateTime> listOfCallsPerAgent = new ArrayList<>();
+        for (LocalDate date : listOfDates) {
+            for (LocalTime time : listOfCallsTimes) {
+                listOfCallsPerAgent.add(LocalDateTime.of(date, time));
             }
         }
         listOfCallsPerAgent.forEach(System.out::println);
@@ -72,16 +78,13 @@ public class MapDbWithThreadsExample {
             threadLevel1.start();
             index++;
         }
-
-    }
-
-    private List<String> generateListOfDates(LocalDate dateFrom, LocalDate dateTo) {
-        int numberOfDays = (int) ChronoUnit.DAYS.between(dateFrom, dateTo) + 1;
-        List<String> list = IntStream.iterate(0, i -> i + 1)
-                .limit(numberOfDays)
-                .mapToObj(i -> dateFrom.plusDays(i).format(DateTimeFormatter.ISO_LOCAL_DATE))
-                .collect(Collectors.toList());
-        return list;
+        dbAgentsNames.close();
+        try {
+            Files.delete(Paths.get("agentsNames.db"));
+            System.out.println("File \"agentsNames.db\" was successfully DELETED!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private HTreeMap<String, Integer> generateListOfAgents(int numberOfAgents, double uniqueNamePercent, DB db) {
@@ -90,7 +93,9 @@ public class MapDbWithThreadsExample {
         //List<String> middleNames = generateNames("..\\demos_and_tutorials\\input\\middle-names.txt");
 
         //  numberOfFirstNames and numberOfLastNames is the same, since using Square Root to find them
-        int numberOfFirstNames = (int)Math.sqrt((double)numberOfAgents) + 1;
+        double sqrt = Math.sqrt(numberOfAgents);
+        if (Math.floor(Math.sqrt(numberOfAgents)) != sqrt) sqrt++;
+        int numberOfFirstNames = (int)sqrt;
         System.out.println("Number of First Names = " + numberOfFirstNames);
 
         HTreeMap mapAgentsNames = db.hashMap("mapAgentsNames").createOrOpen();
@@ -114,15 +119,24 @@ public class MapDbWithThreadsExample {
         return mapAgentsNames;
     }
 
-    private List<String> generateListOfCallsPerDay(int numberOfCallsPerDay, int durationOfCallInMinutes) {
+    private List<LocalDate> generateListOfDates(LocalDate dateFrom, LocalDate dateTo) {
+        int numberOfDays = (int) ChronoUnit.DAYS.between(dateFrom, dateTo) + 1;
+        List<LocalDate> list = IntStream.iterate(0, i -> i + 1)
+                .limit(numberOfDays)
+                .mapToObj(i -> dateFrom.plusDays(i))
+                .collect(Collectors.toList());
+        return list;
+    }
+
+    private List<LocalTime> generateListOfCallsPerDay(int numberOfCallsPerDay, int durationOfCallInMinutes) {
         final int timeIntervalBetweenCallInMinutes = (MINUTES_PER_DAY - (durationOfCallInMinutes * (numberOfCallsPerDay + 1))) / (numberOfCallsPerDay + 1);
 
         //  For the first gap there's no need to add the call duration
         LocalTime timeCallStarted = LocalTime.MIN.plusMinutes(timeIntervalBetweenCallInMinutes);
 
-        List<String> listOfCalls = new ArrayList<>();
+        List<LocalTime> listOfCalls = new ArrayList<>();
         for (int i=1; i <= CALLS_PER_DAY ; i++) {
-            listOfCalls.add(timeCallStarted.format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+            listOfCalls.add(timeCallStarted);
             System.out.println("Call #" + i + ": \n\tStarted at " + timeCallStarted +
                     "\n\tEnded at " + timeCallStarted.plusMinutes(durationOfCallInMinutes) +
                     "\n\tContact Start Time: " + timeCallStarted +
