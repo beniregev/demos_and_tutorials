@@ -4,10 +4,7 @@ import org.mapdb.DB;
 import org.mapdb.DBMaker;
 import org.mapdb.HTreeMap;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -22,7 +19,7 @@ import java.util.stream.IntStream;
 
 public class MapDbWithThreadsExample {
     private static final int OVERALL_BULKS = 1000;
-    private static final int NUMBER_OF_AGENTS = 9;
+    private static final int NUMBER_OF_AGENTS = 30000;
     private static final int CALLS_PER_DAY = 22;
     private static final int NUMBER_OF_DAYS = 2;
     private static final int DURATION_OF_CALL_IN_MINUTES = 5;
@@ -55,29 +52,29 @@ public class MapDbWithThreadsExample {
         HTreeMap<String, Integer> mapAgentsNames = example.generateListOfAgents(example.NUMBER_OF_AGENTS, 100, dbAgentsNames);
         System.out.println("mapAgentsNames.sizeLong() = " + mapAgentsNames.sizeLong());
 
-        System.out.println("ISO_LOCAL_DATE = " + dateFrom.format(DateTimeFormatter.ISO_LOCAL_DATE));
-
-        List<LocalDate> listOfDates = example.generateListOfDates(dateFrom,dateTo);
-        listOfDates.forEach(System.out::println);
-
-        List<LocalTime> listOfCallsTimes = example.generateListOfCallsPerDay(CALLS_PER_DAY, DURATION_OF_CALL_IN_MINUTES);
-        listOfCallsTimes.forEach(System.out::println);
-
-        List<LocalDateTime> listOfCallsPerAgent = new ArrayList<>();
-        for (LocalDate date : listOfDates) {
-            for (LocalTime time : listOfCallsTimes) {
-                listOfCallsPerAgent.add(LocalDateTime.of(date, time));
-            }
-        }
-        listOfCallsPerAgent.forEach(System.out::println);
-
-        long numberOfSegments = NUMBER_OF_AGENTS * CALLS_PER_DAY * NUMBER_OF_DAYS;
-        int index = 1;
-        for (String agentName : mapAgentsNames.getKeys()) {
-            Thread threadLevel1 = new Thread(new ThreadLevel1(agentName, listOfCallsPerAgent, numberOfSegments, true, index));
-            threadLevel1.start();
-            index++;
-        }
+        //System.out.println("ISO_LOCAL_DATE = " + dateFrom.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        //
+        //List<LocalDate> listOfDates = example.generateListOfDates(dateFrom,dateTo);
+        //listOfDates.forEach(System.out::println);
+        //
+        //List<LocalTime> listOfCallsTimes = example.generateListOfCallsPerDay(CALLS_PER_DAY, DURATION_OF_CALL_IN_MINUTES);
+        //listOfCallsTimes.forEach(System.out::println);
+        //
+        //List<LocalDateTime> listOfCallsPerAgent = new ArrayList<>();
+        //for (LocalDate date : listOfDates) {
+        //    for (LocalTime time : listOfCallsTimes) {
+        //        listOfCallsPerAgent.add(LocalDateTime.of(date, time));
+        //    }
+        //}
+        //listOfCallsPerAgent.forEach(System.out::println);
+        //
+        //long numberOfSegments = NUMBER_OF_AGENTS * CALLS_PER_DAY * NUMBER_OF_DAYS;
+        //int index = 1;
+        //for (String agentName : mapAgentsNames.getKeys()) {
+        //    Thread threadLevel1 = new Thread(new ThreadLevel1(agentName, listOfCallsPerAgent, numberOfSegments, true, index));
+        //    threadLevel1.start();
+        //    index++;
+        //}
         dbAgentsNames.close();
         try {
             Files.delete(Paths.get("agentsNames.db"));
@@ -88,31 +85,52 @@ public class MapDbWithThreadsExample {
     }
 
     private HTreeMap<String, Integer> generateListOfAgents(int numberOfAgents, double uniqueNamePercent, DB db) {
-        //List<String> firstNames = generateNames("..\\demos_and_tutorials\\input\\first-names.txt");
-        //List<String> lastNames = generateNames("..\\demos_and_tutorials\\input\\last-names.txt");
-        //List<String> middleNames = generateNames("..\\demos_and_tutorials\\input\\middle-names.txt");
-
         //  numberOfFirstNames and numberOfLastNames is the same, since using Square Root to find them
         double sqrt = Math.sqrt(numberOfAgents);
-        if (Math.floor(Math.sqrt(numberOfAgents)) != sqrt) sqrt++;
-        int numberOfFirstNames = (int)sqrt;
+        int numberOfFirstNames = (int)Math.ceil(Math.sqrt(numberOfAgents));
         System.out.println("Number of First Names = " + numberOfFirstNames);
 
         HTreeMap mapAgentsNames = db.hashMap("mapAgentsNames").createOrOpen();
         long start = System.currentTimeMillis();
         int i=1;
-        for(String firstName : firstNames) {
-            int j=1;
-            for (String lastName : lastNames) {
-                mapAgentsNames.put(firstName + " " + lastName, 1);
-                System.out.println("firstName=" + firstName + " ; lastName=" + lastName);
-                j++;
-                if (j > numberOfFirstNames) break;
+        int count = 0;
+        //  Prepare an output file for agents-names
+        String filename = "ms-search-performance-test-" + numberOfAgents + "-agents-names-ddt.csv";
+        File file = new File(filename);
+        if (file.exists()) {
+            file.delete();
+            System.out.println("file \"" + filename + "\" was deleted!");
+        }
+
+        try {
+            //  Initialize output file for Agents-Names
+            file.createNewFile();
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+
+            for (String firstName : firstNames) {
+                int j = 1;
+                for (String lastName : lastNames) {
+                    count++;
+                    //  Writing agent-name to output file
+                    bw.write(firstName + " " + lastName + "\n");
+                    //  Adding agent-name to HTreeMap
+                    mapAgentsNames.put(firstName + " " + lastName, 1);
+                    System.out.println(count + " firstName=" + firstName + " ; lastName=" + lastName);
+                    j++;
+                    if (j > numberOfFirstNames) break;
+                }
+                i++;
+                if (i > numberOfFirstNames) break;
             }
-            i++;
-            if (i > numberOfFirstNames) break;
+            bw.close();
+            fw.close();
+            System.out.println("Output file \"" + filename + "\" was created, filled and is ready for use!");
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
         long end = System.currentTimeMillis();
+        System.out.println("Number of First and Last Names = " + numberOfFirstNames);
         System.out.println("Generating a list of " + numberOfAgents +
                 " agents names took " + (end - start) + " milliseconds");
 
