@@ -52,29 +52,29 @@ public class MapDbWithThreadsExample {
         HTreeMap<String, Integer> mapAgentsNames = example.generateListOfAgents(example.NUMBER_OF_AGENTS, 100, dbAgentsNames);
         System.out.println("mapAgentsNames.sizeLong() = " + mapAgentsNames.sizeLong());
 
-        //System.out.println("ISO_LOCAL_DATE = " + dateFrom.format(DateTimeFormatter.ISO_LOCAL_DATE));
-        //
-        //List<LocalDate> listOfDates = example.generateListOfDates(dateFrom,dateTo);
-        //listOfDates.forEach(System.out::println);
-        //
-        //List<LocalTime> listOfCallsTimes = example.generateListOfCallsPerDay(CALLS_PER_DAY, DURATION_OF_CALL_IN_MINUTES);
-        //listOfCallsTimes.forEach(System.out::println);
-        //
-        //List<LocalDateTime> listOfCallsPerAgent = new ArrayList<>();
-        //for (LocalDate date : listOfDates) {
-        //    for (LocalTime time : listOfCallsTimes) {
-        //        listOfCallsPerAgent.add(LocalDateTime.of(date, time));
-        //    }
-        //}
-        //listOfCallsPerAgent.forEach(System.out::println);
-        //
-        //long numberOfSegments = NUMBER_OF_AGENTS * CALLS_PER_DAY * NUMBER_OF_DAYS;
-        //int index = 1;
-        //for (String agentName : mapAgentsNames.getKeys()) {
-        //    Thread threadLevel1 = new Thread(new ThreadLevel1(agentName, listOfCallsPerAgent, numberOfSegments, true, index));
-        //    threadLevel1.start();
-        //    index++;
-        //}
+        System.out.println("ISO_LOCAL_DATE = " + dateFrom.format(DateTimeFormatter.ISO_LOCAL_DATE));
+
+        List<LocalDate> listOfDates = example.generateListOfDates(dateFrom,dateTo);
+        listOfDates.forEach(System.out::println);
+
+        List<LocalTime> listOfCallsTimes = example.generateListOfCallsPerDay(CALLS_PER_DAY, DURATION_OF_CALL_IN_MINUTES);
+        listOfCallsTimes.forEach(System.out::println);
+
+        List<LocalDateTime> listOfCallsPerAgent = new ArrayList<>();
+        for (LocalDate date : listOfDates) {
+            for (LocalTime time : listOfCallsTimes) {
+                listOfCallsPerAgent.add(LocalDateTime.of(date, time));
+            }
+        }
+        listOfCallsPerAgent.forEach(System.out::println);
+
+        long numberOfSegments = NUMBER_OF_AGENTS * CALLS_PER_DAY * NUMBER_OF_DAYS;
+        int index = 1;
+        for (String agentName : mapAgentsNames.getKeys()) {
+            Thread threadLevel1 = new Thread(new ThreadLevel1(agentName, listOfCallsPerAgent, numberOfSegments, true, index));
+            threadLevel1.start();
+            index++;
+        }
         dbAgentsNames.close();
         try {
             Files.delete(Paths.get("agentsNames.db"));
