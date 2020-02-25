@@ -23,9 +23,18 @@ public class JacksonObjectMapperExamples {
         root.put("iSegmentId", "2936459873");
         root.put("SegmentGMTStartTime", "2020-01-05 12:34:56.789");
         root.put("SegmentGMTStopTime", "2020-01-05 12:34:56.789");
-        ArrayNode recordingsArray = objectMapper.createArrayNode();
-        recordingsArray.add("1").add("3");
-        root.putPOJO("recordings", recordingsArray);
+        root.putPOJO("recordings", objectMapper.createArrayNode().add("1").add("3"));
+
+        //"recordingStatus": {
+        //    "Voice": "Successful"
+        //},
+        ObjectNode recordingStatus = objectMapper.createObjectNode();
+        recordingStatus.put("Voice", "Successful");
+        root.putPOJO("recordingStatus1", recordingStatus);
+        root.putPOJO("recordingStatus2", objectMapper
+                .createObjectNode()
+                .put("Voice", "Successful"));
+
         root.put("BinaryValue", true);
 
         ArrayNode arrayNode = objectMapper.createArrayNode();
