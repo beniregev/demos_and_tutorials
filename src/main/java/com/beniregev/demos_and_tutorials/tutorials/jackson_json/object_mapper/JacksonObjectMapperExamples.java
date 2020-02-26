@@ -61,6 +61,7 @@ public class JacksonObjectMapperExamples {
         root.putPOJO("ArrayNodes", arrayNode);
         try {
             System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(root));
+            System.out.println(objectMapper.writer().writeValueAsString(root));
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
