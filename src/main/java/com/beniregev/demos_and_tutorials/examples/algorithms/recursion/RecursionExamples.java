@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.algorithms.recursion;
+package com.beniregev.demos_and_tutorials.examples.algorithms.recursion;
 
 import java.io.File;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.algorithms.sorting;
+package com.beniregev.demos_and_tutorials.examples.algorithms.sorting;
 
 public class MergeSortExample {
     // Merges two subarrays of arr[].

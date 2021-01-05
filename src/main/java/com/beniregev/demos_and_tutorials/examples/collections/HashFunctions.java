@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.collections;
+package com.beniregev.demos_and_tutorials.examples.collections;
 
 import java.util.Arrays;
 

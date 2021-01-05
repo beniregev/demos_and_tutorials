@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.algorithms.nestedloops;
+package com.beniregev.demos_and_tutorials.examples.algorithms.nestedloops;
 
 public class NestedForLoopsExample {
     private int numberRows = 500;
