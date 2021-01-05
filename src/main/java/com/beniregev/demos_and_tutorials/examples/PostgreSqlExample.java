@@ -32,6 +32,7 @@ public class PostgreSqlExample {
             e.printStackTrace();
         }
 
+        //  TODO - Benny - uncomment and make this work
 //        try (Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/example", "postgres", "postgres")) {
 //
 //            System.out.println("Java JDBC PostgreSQL Example");
