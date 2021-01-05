@@ -1,12 +1,14 @@
 package com.beniregev.demos_and_tutorials.rule;
 
 
-import com.beniregev.exception.RestrictedLogLevel;
+
+import com.beniregev.demos_and_tutorials.exception.RestrictedLogLevel;
+import com.beniregev.demos_and_tutorials.exception.RestrictedLogLevel.LogLevel;
+import com.beniregev.demos_and_tutorials.util.Logger;
 import org.apache.commons.logging.Log;
 import org.junit.runner.Description;
 import org.springframework.util.StringUtils;
 
-import com.beniregev.util.Logger;
 import com.ibm.icu.impl.Assert;
 
 /**
@@ -68,8 +70,8 @@ public class LogDocumenter implements TestDocumenter {
     }
 
     @Override
-    public void log(final RestrictedLogLevel.LogLevel level, final String message, final Object... args) {
-        if (level == RestrictedLogLevel.LogLevel.DEBUG) {
+    public void log(final LogLevel level, final String message, final Object... args) {
+        if (level == LogLevel.DEBUG) {
             Logger.debug(log, message, args);
         }
     }

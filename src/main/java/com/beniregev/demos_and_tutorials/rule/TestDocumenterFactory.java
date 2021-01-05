@@ -1,6 +1,6 @@
 package com.beniregev.demos_and_tutorials.rule;
 
-import com.beniregev.util.Logger;
+import com.beniregev.demos_and_tutorials.util.Logger;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

@@ -1,6 +1,6 @@
 package com.beniregev.demos_and_tutorials.rule;
 
-import com.beniregev.exception.RestrictedLogLevel;
+import com.beniregev.demos_and_tutorials.exception.RestrictedLogLevel.LogLevel;
 import org.junit.runner.Description;
 
 
@@ -31,7 +31,7 @@ public interface TestDocumenter {
      * @param message
      * @param args
      */
-    void log(RestrictedLogLevel.LogLevel level, String message, Object... args);
+    void log(LogLevel level, String message, Object... args);
 
     /**
      * Report a Test Failure
