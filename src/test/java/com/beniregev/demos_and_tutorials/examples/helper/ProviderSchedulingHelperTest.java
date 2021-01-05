@@ -1,6 +1,6 @@
 package com.beniregev.demos_and_tutorials.examples.helper;
 
-import com.beniregev.test.rule.*;
+import com.beniregev.demos_and_tutorials.rule.*;
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Rule;
