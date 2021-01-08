@@ -13,6 +13,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
+/**
+ * @author Binyamin Regev
+ */
 public final class ReflectionUtils {
 
     /**
@@ -349,7 +352,7 @@ public final class ReflectionUtils {
     /**
      * Basic filter to accept all fields which are not static and are not final.
      *
-     * @author Eric.Lundin
+     * @author Binyamin Regev
      */
     public static class BasicCopyFieldFilter implements FieldFilter {
         /**
@@ -381,7 +384,7 @@ public final class ReflectionUtils {
      * Rejected fields are only defined in constructor to allow static
      * declaration without fear of modification by using class.
      *
-     * @author Eric.Lundin
+     * @author Binyamin Regev
      */
     public static class RejectNamedFieldFilter extends BasicCopyFieldFilter {
         private final List<String> rejectFields = new ArrayList<String>();

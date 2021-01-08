@@ -3,7 +3,7 @@ package com.beniregev.demos_and_tutorials.model;
 /**
  * Represents a machine in an environment.
  *
- * @author Rich O'Connell
+ * @author Binyamin Regev
  */
 public class Machine {
 

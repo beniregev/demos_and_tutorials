@@ -5,7 +5,7 @@ import org.junit.runner.Description;
 
 
 /**
- * @author AMERICANWELL\leon.kay
+ * @author Binyamin Regev
  */
 public interface TestDocumenter {
 

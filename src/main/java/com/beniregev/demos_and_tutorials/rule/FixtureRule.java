@@ -433,7 +433,7 @@ public class FixtureRule implements TestRule {
      * A statement that will replay all the generated mocks before executing the test, as well as verify the mocks after
      * test execution
      *
-     * @author leon.kay
+     * @author Binyamin Regev
      */
     public class FixtureStatement extends Statement {
 

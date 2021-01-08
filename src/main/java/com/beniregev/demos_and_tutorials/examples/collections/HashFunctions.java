@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 /**
  * Demonstrating HashTable data structure.
- * @author binyamin.regev
+ * @author Binyamin Regev
  * @version 1.0
  */
 public class HashFunctions {

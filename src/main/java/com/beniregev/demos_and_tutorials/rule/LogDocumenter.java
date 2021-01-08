@@ -12,7 +12,7 @@ import org.springframework.util.StringUtils;
 import com.ibm.icu.impl.Assert;
 
 /**
- * @author AMERICANWELL\leon.kay
+ * @author Binyamin Regev
  */
 public class LogDocumenter implements TestDocumenter {
 

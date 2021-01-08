@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 /**
  * Various examples of sorting a HashMap using Java 8 features, Streams, Lambdas, Iterators, Comparators, etc. 
- * @author binyamin.regev 
+ * @author Binyamin Regev
  */
 public class HashMapSortExamples implements Comparator<SortStudent> {
     /**

@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author AMERICANWELL\leon.kay
+ * @author Binyamin Regev
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})

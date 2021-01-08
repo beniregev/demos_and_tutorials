@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Utility for generating Test Documenters
  *
- * @author AMERICANWELL\leon.kay
+ * @author Binyamin Regev
  */
 public class TestDocumenterFactory {
 

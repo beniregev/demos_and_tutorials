@@ -60,7 +60,7 @@ package com.beniregev.demos_and_tutorials.examples;
  *  =================================================
  *  </p>
  *  </div>
- * @author binyamin.regev
+ * @author Binyamin Regev
  */
 public class JavaOperatorsExamples {
 

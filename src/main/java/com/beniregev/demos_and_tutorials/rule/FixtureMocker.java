@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import org.springframework.ui.context.Theme;
 
 /**
- * @author AMERICANWELL\leon.kay
+ * @author Binyamin Regev
  * FixtureMocker reference Classes that can change Mocking Behavior.
  * Used in conjunction with {@link @FixtureConfig} to maximize reuse of Mocking Code.
  * Objects annotated with this should be Fields declared as static.

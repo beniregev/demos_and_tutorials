@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author leon.kay
+ * @author Binyamin Regev
  * An annotation for setting notes on a unit test.
  * Can be used later for documentation generation of use cases
  */

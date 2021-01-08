@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author leon.kay
+ * @author Binyamin Regev
  * Utility interface to be used for Configuring Junit Rules for individual tests.
  * Each mocking method referenced in the rule should return a List of mocks or the mock that we want to verify
  */

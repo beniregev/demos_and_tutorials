@@ -21,7 +21,7 @@ public @interface RestrictedLogLevel {
     /**
      * Enumeration for log levels.
      *
-     * @author Ameer Antar
+     * @author Binyamin Regev
      */
     public enum LogLevel {
         /**

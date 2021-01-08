@@ -10,7 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-
+/**
+ * @author Binyamin Regev
+ */
 public class ProviderSchedulingHelperTest {
     private final int STANDARD_HOUR_BLOCK_NUMBER = 24;
     private final int DST_HOUR_BLOCK_NUMBER_IN_MARCH = 23;

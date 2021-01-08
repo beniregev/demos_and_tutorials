@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import org.easymock.MockType;
 
 /**
- * @author leon.kay
+ * @author Binyamin Regev
  * Annotation to tell fixture rule how to replace the Singleton instance on a class with an EasyMock
  */
 @Retention(RetentionPolicy.RUNTIME)
