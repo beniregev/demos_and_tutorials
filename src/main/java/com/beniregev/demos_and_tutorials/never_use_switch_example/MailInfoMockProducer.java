@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Random;
 
 /**
- * @author Binyamin Regev e-mail: beniregev@gmail.com
+ * @author Binyamin Regev
  * @since 1.8
  */
 @Service

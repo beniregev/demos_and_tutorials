@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * @author Binyamin Regev e-mail: beniregev@gmail.com
+ * @author Binyamin Regev
  * @since 1.8
  */
 @Data

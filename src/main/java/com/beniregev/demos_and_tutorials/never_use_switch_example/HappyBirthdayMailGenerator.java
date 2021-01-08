@@ -3,7 +3,7 @@ package com.beniregev.demos_and_tutorials.never_use_switch_example;
 import org.springframework.stereotype.Component;
 
 /**
- * @author Binyamin Regev e-mail: beniregev@gmail.com
+ * @author Binyamin Regev
  * @since 1.8
  */
 @Component("1")

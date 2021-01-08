@@ -13,7 +13,7 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
 
 /**
- * @author Binyamin Regev e-mail: beniregev@gmail.com
+ * @author Binyamin Regev
  * @since 1.8
  */
 @Configuration
