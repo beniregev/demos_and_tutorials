@@ -5,6 +5,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ * @author Binyamin Regev
+ * @see "https://www.baeldung.com/lombok-builder"
+ */
 public class LombokBuilderExamples {
     private List<PersonAdvanced> persons;
 
