@@ -13,6 +13,10 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
 
 /**
+ * <div>
+ *     This {@code Configuration} class uses <i>Spring framework</i> {@code Scheduling}
+ *     different types of messages randomly.
+ * </div>
  * @author Binyamin Regev
  * @since 1.8
  */
