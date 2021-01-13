@@ -6,8 +6,15 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 /**
+ * <div>
+ *     <p>  This class method {@code sendMail(MailInfo)} &quot;sends&quot;
+ *          the message by calling a private method. </p>
+ *     <p>  Note: {@code Autpwored} property This class method {@code sendMail(MailInfo)} &quot;sends&quot;
+ *
+ * </div>
  * @author Binyamin Regev
  * @since 1.8
+ * @see MainConfiguration
  */
 @Service
 public class MailSender {
