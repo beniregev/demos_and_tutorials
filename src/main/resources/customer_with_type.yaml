@@ -1,0 +1,4 @@
+!! com.beniregev.demos_and_examples.parsing_yaml_with_snakeyaml.Customer
+firstName: "John"
+lastName: "Doe"
+age: 20
