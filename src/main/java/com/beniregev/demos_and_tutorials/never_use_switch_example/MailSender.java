@@ -33,6 +33,9 @@ public class MailSender {
         send(html);
     }
 
+    public int getMapSize() {
+        return map.size();
+    }
     private void send(String html) {
         System.out.println(html + " was sent");
     }
