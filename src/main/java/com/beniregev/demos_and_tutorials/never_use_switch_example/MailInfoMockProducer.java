@@ -22,7 +22,7 @@ public class MailInfoMockProducer {
     @Scheduled(fixedDelay = 1000)
     public void generateSteamMailInfo() {
 
-        int i = random.nextInt(2) + 1;
+        int i = random.nextInt(mailSender.getMapSize()) + 1;
         MailInfo mailInfo = new MailInfo(i);
         mailSender.sendMail(mailInfo);
     }
