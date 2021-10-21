@@ -5,8 +5,9 @@ import java.util.Map;
 
 public class HashMapFilterExamples {
     public void runExample(String[] args) {
+
         Map<String, Student> mapStudents = new HashMap<>();
-        mapStudents.put("A", new Student(1, "Moshe", "Ranenu", 98));
+        mapStudents.put("A", new Student(1, "Moshe", "Rabenu", 98));
         mapStudents.put("F", new Student(2, "Itshak", "Avinu", 28));
         mapStudents.put("B", new Student(9, "Jakob", "Avinu", 18));
         mapStudents.put("E", new Student(6, "Aaron", "Hacohen", 38));
@@ -19,8 +20,10 @@ public class HashMapFilterExamples {
         System.out.println("Original Map: ");
         mapStudents.forEach((key, value) -> System.out.println(key + " : " + value));
 
-        //  Filter HashMap by grage and put in a List
-        //List<SortStudent> listStudentSorted = new
+        //  Filter HashMap by grade and put in a list:
+        //  <code>
+        //      List<SortStudent> listStudentSorted = new List<SortStudent>();
+        //  </code>
     }
 
     public static void main(String[] args) {
@@ -30,14 +33,14 @@ public class HashMapFilterExamples {
 
 class Student {
     private int id;
-    private String fname;
-    private String lname;
+    private String firstName;
+    private String lastName;
     private int grade;
 
-    public Student(int id, String fname, String lname, int grade) {
+    public Student(int id, String firstName, String lastName, int grade) {
         this.id = id;
-        this.fname = fname;
-        this.lname = lname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.grade = grade;
     }
 
@@ -57,20 +60,20 @@ class Student {
         this.id = id;
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLname() {
-        return lname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getGrade() {
@@ -85,8 +88,8 @@ class Student {
     public String toString() {
         return "SortStudent{" +
                 "id=" + id +
-                ", fname='" + fname + '\'' +
-                ", lname='" + lname + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", grade=" + grade +
                 '}';
     }
