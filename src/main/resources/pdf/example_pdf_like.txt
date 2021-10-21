@@ -1,0 +1,331 @@
+The CustomerCreditTransferInitiation message must not be used by the debtor agent to execute the
+credit transfer instruction(s). The FIToFICustomerCreditTransfer message must be used instead.
+Outline
+The CustomerCreditTransferInitiationV11 MessageDefinition is composed of 3 MessageBuildingBlocks:
+A. GroupHeader
+Set of characteristics shared by all individual transactions included in the message.
+B. PaymentInformation
+Set of characteristics that applies to the debit side of the payment transactions included in the
+credit transfer initiation.
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 4 February 2021
+C. SupplementaryData
+Additional information that cannot be captured in the structured elements and/or any other specific
+block.
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 5 February 2021
+2.2 Structure
+Or MessageElement/BuildingBlock<XML Tag> Mult. Type Constr.
+No.
+Page
+Message root <Document> <CstmrCdtTrfInitn> [1..1] C31
+GroupHeader <GrpHdr> [1..1] ± 16
+PaymentInformation <PmtInf> [1..*] C4, C5
+PaymentInformationIdentification <PmtInfId> [1..1] Text 27
+PaymentMethod <PmtMtd> [1..1] CodeSet 27
+RequestedAdviceType <ReqdAdvcTp> [0..1] 28
+CreditAdvice <CdtAdvc> [0..1] 28
+{Or Code <Cd> [1..1] CodeSet 28
+Or} Proprietary <Prtry> [1..1] Text 29
+DebitAdvice <DbtAdvc> [0..1] 29
+{Or Code <Cd> [1..1] CodeSet 29
+Or} Proprietary <Prtry> [1..1] Text 29
+BatchBooking <BtchBookg> [0..1] Indicator 29
+NumberOfTransactions <NbOfTxs> [0..1] Text 30
+ControlSum <CtrlSum> [0..1] Quantity 30
+PaymentTypeInformation <PmtTpInf> [0..1] ± 30
+RequestedExecutionDate <ReqdExctnDt> [1..1] ± 30
+PoolingAdjustmentDate <PoolgAdjstmntDt> [0..1] Date 31
+Debtor <Dbtr> [1..1] ± 31
+DebtorAccount <DbtrAcct> [1..1] C21,
+C20
+31
+Identification <Id> [0..1] ± 32
+Type <Tp> [0..1] ± 32
+Currency <Ccy> [0..1] CodeSet C1 32
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 6 February 2021
+Or MessageElement/BuildingBlock<XML Tag> Mult. Type Constr.
+No.
+Page
+Name <Nm> [0..1] Text 33
+Proxy <Prxy> [0..1] ± 33
+DebtorAgent <DbtrAgt> [1..1] ± 33
+DebtorAgentAccount <DbtrAgtAcct> [0..1] C21,
+C20
+33
+Identification <Id> [0..1] ± 34
+Type <Tp> [0..1] ± 34
+Currency <Ccy> [0..1] CodeSet C1 35
+Name <Nm> [0..1] Text 35
+Proxy <Prxy> [0..1] ± 35
+InstructionForDebtorAgent <InstrForDbtrAgt> [0..1] Text 36
+UltimateDebtor <UltmtDbtr> [0..1] ± 36
+ChargeBearer <ChrgBr> [0..1] CodeSet 36
+ChargesAccount <ChrgsAcct> [0..1] C21,
+C20
+37
+Identification <Id> [0..1] ± 37
+Type <Tp> [0..1] ± 38
+Currency <Ccy> [0..1] CodeSet C1 38
+Name <Nm> [0..1] Text 38
+Proxy <Prxy> [0..1] ± 39
+ChargesAccountAgent <ChrgsAcctAgt> [0..1] ± 39
+CreditTransferTransactionInformation <CdtTrfTxInf> [1..*] C22,
+C24,
+C25,
+C26,
+C27,
+C28,
+C33,
+C35
+39
+PaymentIdentification <PmtId> [1..1] ± 46
+PaymentTypeInformation <PmtTpInf> [0..1] ± 46
+Amount <Amt> [1..1] ± 47
+ExchangeRateInformation <XchgRateInf> [0..1] 47
+UnitCurrency <UnitCcy> [0..1] CodeSet C1 48
+ExchangeRate <XchgRate> [0..1] Rate 48
+RateType <RateTp> [0..1] CodeSet 48
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 7 February 2021
+Or MessageElement/BuildingBlock<XML Tag> Mult. Type Constr.
+No.
+Page
+ContractIdentification <CtrctId> [0..1] Text 48
+ChargeBearer <ChrgBr> [0..1] CodeSet 49
+MandateRelatedInformation <MndtRltdInf> [0..1] ± 49
+ChequeInstruction <ChqInstr> [0..1] ± C15 50
+UltimateDebtor <UltmtDbtr> [0..1] ± 51
+IntermediaryAgent1 <IntrmyAgt1> [0..1] ± 52
+IntermediaryAgent1Account <IntrmyAgt1Acct> [0..1] C21,
+C20
+52
+Identification <Id> [0..1] ± 53
+Type <Tp> [0..1] ± 53
+Currency <Ccy> [0..1] CodeSet C1 53
+Name <Nm> [0..1] Text 54
+Proxy <Prxy> [0..1] ± 54
+IntermediaryAgent2 <IntrmyAgt2> [0..1] ± 54
+IntermediaryAgent2Account <IntrmyAgt2Acct> [0..1] C21,
+C20
+55
+Identification <Id> [0..1] ± 55
+Type <Tp> [0..1] ± 55
+Currency <Ccy> [0..1] CodeSet C1 56
+Name <Nm> [0..1] Text 56
+Proxy <Prxy> [0..1] ± 56
+IntermediaryAgent3 <IntrmyAgt3> [0..1] ± 57
+IntermediaryAgent3Account <IntrmyAgt3Acct> [0..1] C21,
+C20
+57
+Identification <Id> [0..1] ± 58
+Type <Tp> [0..1] ± 58
+Currency <Ccy> [0..1] CodeSet C1 58
+Name <Nm> [0..1] Text 59
+Proxy <Prxy> [0..1] ± 59
+CreditorAgent <CdtrAgt> [0..1] ± 59
+CreditorAgentAccount <CdtrAgtAcct> [0..1] C21,
+C20
+59
+Identification <Id> [0..1] ± 60
+Type <Tp> [0..1] ± 60
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 8 February 2021
+Or MessageElement/BuildingBlock<XML Tag> Mult. Type Constr.
+No.
+Page
+Currency <Ccy> [0..1] CodeSet C1 61
+Name <Nm> [0..1] Text 61
+Proxy <Prxy> [0..1] ± 61
+Creditor <Cdtr> [0..1] ± 61
+CreditorAccount <CdtrAcct> [0..1] C21,
+C20
+62
+Identification <Id> [0..1] ± 62
+Type <Tp> [0..1] ± 63
+Currency <Ccy> [0..1] CodeSet C1 63
+Name <Nm> [0..1] Text 63
+Proxy <Prxy> [0..1] ± 64
+UltimateCreditor <UltmtCdtr> [0..1] ± 64
+InstructionForCreditorAgent <InstrForCdtrAgt> [0..*] ± 64
+InstructionForDebtorAgent <InstrForDbtrAgt> [0..1] 64
+Code <Cd> [0..1] CodeSet 65
+InstructionInformation <InstrInf> [0..1] Text 65
+Purpose <Purp> [0..1] ± 65
+RegulatoryReporting <RgltryRptg> [0..10] ± 65
+Tax <Tax> [0..1] 66
+Creditor <Cdtr> [0..1] ± 68
+Debtor <Dbtr> [0..1] ± 68
+AdministrationZone <AdmstnZone> [0..1] Text 68
+ReferenceNumber <RefNb> [0..1] Text 68
+Method <Mtd> [0..1] Text 68
+TotalTaxableBaseAmount <TtlTaxblBaseAmt> [0..1] Amount C1, C18 68
+TotalTaxAmount <TtlTaxAmt> [0..1] Amount C1, C18 69
+Date <Dt> [0..1] Date 69
+SequenceNumber <SeqNb> [0..1] Quantity 69
+Record <Rcrd> [0..*] 69
+Type <Tp> [0..1] Text 70
+Category <Ctgy> [0..1] Text 70
+CategoryDetails <CtgyDtls> [0..1] Text 71
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 9 February 2021
+Or MessageElement/BuildingBlock<XML Tag> Mult. Type Constr.
+No.
+Page
+DebtorStatus <DbtrSts> [0..1] Text 71
+CertificateIdentification <CertId> [0..1] Text 71
+FormsCode <FrmsCd> [0..1] Text 71
+Period <Prd> [0..1] 71
+Year <Yr> [0..1] Year 71
+Type <Tp> [0..1] CodeSet 71
+FromToDate <FrToDt> [0..1] ± 72
+TaxAmount <TaxAmt> [0..1] 73
+Rate <Rate> [0..1] Rate 73
+TaxableBaseAmount <TaxblBaseAmt> [0..1] Amount C1, C18 73
+TotalAmount <TtlAmt> [0..1] Amount C1, C18 74
+Details <Dtls> [0..*] 74
+Period <Prd> [0..1] 74
+Year <Yr> [0..1] Year 75
+Type <Tp> [0..1] CodeSet 75
+FromToDate <FrToDt> [0..1] ± 76
+Amount <Amt> [1..1] Amount C1, C18 76
+AdditionalInformation <AddtlInf> [0..1] Text 76
+RelatedRemittanceInformation <RltdRmtInf> [0..10] ± 77
+RemittanceInformation <RmtInf> [0..1] 77
+Unstructured <Ustrd> [0..*] Text 80
+Structured <Strd> [0..*] 80
+ReferredDocumentInformation <RfrdDocInf> [0..*] 83
+Type <Tp> [0..1] 85
+CodeOrProprietary <CdOrPrtry> [1..1] 85
+{Or Code <Cd> [1..1] CodeSet 85
+Or} Proprietary <Prtry> [1..1] Text 86
+Issuer <Issr> [0..1] Text 86
+Number <Nb> [0..1] Text 86
+RelatedDate <RltdDt> [0..1] Date 87
+LineDetails <LineDtls> [0..*] 87
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 10 February 2021
+Or MessageElement/BuildingBlock<XML Tag> Mult. Type Constr.
+No.
+Page
+Identification <Id> [1..*] 88
+Type <Tp> [0..1] 89
+CodeOrProprietary <CdOrPrtry> [1..1] 89
+{Or Code <Cd> [1..1] CodeSet 89
+Or} Proprietary <Prtry> [1..1] Text 90
+Issuer <Issr> [0..1] Text 90
+Number <Nb> [0..1] Text 90
+RelatedDate <RltdDt> [0..1] Date 90
+Description <Desc> [0..1] Text 90
+Amount <Amt> [0..1] 90
+DuePayableAmount <DuePyblAmt> [0..1] Amount C1, C18 91
+DiscountAppliedAmount <DscntApldAmt> [0..*] 92
+Type <Tp> [0..1] 92
+{Or Code <Cd> [1..1] CodeSet 92
+Or} Proprietary <Prtry> [1..1] Text 92
+Amount <Amt> [1..1] Amount C1, C18 92
+CreditNoteAmount <CdtNoteAmt> [0..1] Amount C1, C18 93
+TaxAmount <TaxAmt> [0..*] 93
+Type <Tp> [0..1] 93
+{Or Code <Cd> [1..1] CodeSet 94
+Or} Proprietary <Prtry> [1..1] Text 94
+Amount <Amt> [1..1] Amount C1, C18 94
+AdjustmentAmountAndReason
+<AdjstmntAmtAndRsn>
+[0..*] 94
+Amount <Amt> [1..1] Amount C1, C18 95
+CreditDebitIndicator <CdtDbtInd> [0..1] CodeSet 95
+Reason <Rsn> [0..1] Text 95
+AdditionalInformation <AddtlInf> [0..1] Text 95
+RemittedAmount <RmtdAmt> [0..1] Amount C1, C18 96
+ReferredDocumentAmount <RfrdDocAmt> [0..1] ± 96
+CreditorReferenceInformation <CdtrRefInf> [0..1] ± 97
+Invoicer <Invcr> [0..1] ± 98
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 11 February 2021
+Or MessageElement/BuildingBlock<XML Tag> Mult. Type Constr.
+No.
+Page
+Invoicee <Invcee> [0..1] ± 98
+TaxRemittance <TaxRmt> [0..1] 99
+Creditor <Cdtr> [0..1] ± 101
+Debtor <Dbtr> [0..1] ± 101
+UltimateDebtor <UltmtDbtr> [0..1] ± 101
+AdministrationZone <AdmstnZone> [0..1] Text 102
+ReferenceNumber <RefNb> [0..1] Text 102
+Method <Mtd> [0..1] Text 102
+TotalTaxableBaseAmount <TtlTaxblBaseAmt> [0..1] Amount C1, C18 102
+TotalTaxAmount <TtlTaxAmt> [0..1] Amount C1, C18 103
+Date <Dt> [0..1] Date 103
+SequenceNumber <SeqNb> [0..1] Quantity 103
+Record <Rcrd> [0..*] 103
+Type <Tp> [0..1] Text 104
+Category <Ctgy> [0..1] Text 104
+CategoryDetails <CtgyDtls> [0..1] Text 104
+DebtorStatus <DbtrSts> [0..1] Text 105
+CertificateIdentification <CertId> [0..1] Text 105
+FormsCode <FrmsCd> [0..1] Text 105
+Period <Prd> [0..1] 105
+Year <Yr> [0..1] Year 105
+Type <Tp> [0..1] CodeSet 105
+FromToDate <FrToDt> [0..1] ± 106
+TaxAmount <TaxAmt> [0..1] 107
+Rate <Rate> [0..1] Rate 107
+TaxableBaseAmount <TaxblBaseAmt> [0..1] Amount C1, C18 107
+TotalAmount <TtlAmt> [0..1] Amount C1, C18 107
+Details <Dtls> [0..*] 108
+Period <Prd> [0..1] 108
+Year <Yr> [0..1] Year 108
+Type <Tp> [0..1] CodeSet 109
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
+Payments Initiation - Maintenance 2020 - 2021 12 February 2021
+Or MessageElement/BuildingBlock<XML Tag> Mult. Type Constr.
+No.
+Page
+FromToDate <FrToDt> [0..1] ± 109
+Amount <Amt> [1..1] Amount C1, C18 110
+AdditionalInformation <AddtlInf> [0..1] Text 110
+GarnishmentRemittance <GrnshmtRmt> [0..1] ± 110
+AdditionalRemittanceInformation <AddtlRmtInf> [0..3] Text 111
+SupplementaryData <SplmtryData> [0..*] ± C32 111
+SupplementaryData <SplmtryData> [0..*] ± C32 112
+2.3 Constraints
+C1 ActiveOrHistoricCurrency
+The Currency Code must be registered, or have already been registered. Valid active or historic
+currency codes are registered with the ISO 4217 Maintenance Agency, consist of three (3)
+contiguous letters, and may be or not be withdrawn on the day the message containing the
+Currency is exchanged.
+C2 AnyBIC
+Only a valid Business identifier code is allowed. Business identifier codes for financial or nonfinancial
+institutions are registered and published by the ISO 9362 Registration Authority in the
+ISO directory of BICs, and consists of eight (8) or eleven (11) contiguous characters.
+C3 BICFI
+Valid BICs for financial institutions are registered and published by the ISO 9362 Registration
+Authority in the ISO directory of BICs, and consist of eight (8) or eleven (11) contiguous
+characters.
+C4 ChargeBearerRule
+If ChargeBearer is present, then CreditTransferTransactionInformation/ChargeBearer is not
+allowed.
+If CreditTransferTransactionInformation/ChargeBearer is present, then ChargeBearer is not
+allowed.
+CreditTransferTransactionInformation/ChargeBearer and ChargeBearer may both be absent.
+C5 ChargesAccountAgentRule
+If ChargesAccountAgent is present, then it must contain a branch of the DebtorAgent. It must
+not contain a completely different agent.
+C6 ChargesAccountRule
+If ChargesAccountAgent is present, then ChargesAccount must be present.
+C7 ChequeAndCreditorAccountRule
+If PaymentMethod is CHK (Cheque), then CreditTransferTransactionInformation/
+CreditorAccount is not allowed.
+Approved by the Payments SEG on 11 January 2021 pain.001.001.11
+CustomerCreditTransferInitiationV11
