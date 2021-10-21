@@ -7,6 +7,7 @@ import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -153,6 +154,10 @@ public class JavaPDFFileExamples {
             ipe.printStackTrace();
             System.out.println("-------------------------------------------------");
             System.out.println(ipe.getMessage());
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+            System.out.println("-------------------------------------------------");
+            System.out.println(ioe.getMessage());
         }
     }
 
