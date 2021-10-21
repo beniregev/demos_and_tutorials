@@ -36,7 +36,7 @@ public class FilesAndIOExamples {
         System.out.println("printCurrentWorkingDirectory4() - using FileSystem class = " + userDirectory);
     }
 
-    // get a file from the resources folder, root of classpath in JAR
+    // get a file from the resource's folder, root of classpath in JAR
 
     /**
      * <h2>Working Directory for JAR file</h2>
@@ -47,7 +47,7 @@ public class FilesAndIOExamples {
      * </p>
      *
      * @param fileName Name of the file to access inside the JAR file
-     * @return
+     * @return {@link InputStream} for fileName from resource
      */
     public InputStream getFileFromResourceAsStream(String fileName) {
 
@@ -70,8 +70,8 @@ public class FilesAndIOExamples {
 
     public void deleteFile(File file) {
         if (file.exists()) {
-            file.delete();
-            System.out.println("file \"" + file.getName() + "\" was deleted!");
+            boolean deleted = file.delete();
+            System.out.println("file \"" + file.getName() + "\" was " + (deleted ? "successfully" : "NOT") + " deleted!");
         }
     }
 
@@ -80,15 +80,19 @@ public class FilesAndIOExamples {
             String dataLine = "This is line number ";
             File file = new File(fileName);
             this.deleteFile(file);
-            file.createNewFile();
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (int i=1; i<10; i++) {
-                bw.write(dataLine + String.valueOf(10+i) + "\n");
+            boolean created = file.createNewFile();
+            if (created) {
+                FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                BufferedWriter bw = new BufferedWriter(fw);
+                for (int i = 1; i < 10; i++) {
+                    bw.write(dataLine + (10 + i) + "\n");
+                }
+                bw.close();
+                fw.close();
+                System.out.println("file \"" + fileName + "\" was created!");
+            } else {
+                System.out.println("file \"" + fileName + "\" creation FAILED!");
             }
-            bw.close();
-            fw.close();
-            System.out.println("file \"" + fileName + "\" was created!");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
