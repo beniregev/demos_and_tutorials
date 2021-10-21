@@ -7,11 +7,9 @@ import org.apache.pdfbox.text.PDFTextStripperByArea;
 
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -70,7 +68,7 @@ public class JavaPDFFileExamples {
     public void readPdfUsingApachePdfBox() {
         System.out.println(TAB + "method readPdfUsingApachePdfBox() -- Start");
         try (PDDocument document = PDDocument.load(new File(this.PDF_FILENAME))) {
-            document.getClass();
+//            Class<?> documentClass = document.getClass();
 
             if (!document.isEncrypted()) {
                 System.out.println(DOUBLE_TAB + "* new PDFTextStripperByArea()...");
@@ -84,7 +82,7 @@ public class JavaPDFFileExamples {
 
                 // split by whitespace
                 System.out.println(DOUBLE_TAB + "* pdfFileInText.split(\"\\\\r?\\\\n\")...");
-                String lines[] = pdfFileInText.split("\\r?\\n");
+                String[] lines = pdfFileInText.split("\\r?\\n");
                 System.out.println(DOUBLE_TAB + "* Filter the PDF file lines and gathering them into List<String>...");
                 List<String> matchingLines = Arrays.stream(lines)
                         .filter(line -> PATTERN.matcher(line).find())
@@ -155,10 +153,6 @@ public class JavaPDFFileExamples {
             ipe.printStackTrace();
             System.out.println("-------------------------------------------------");
             System.out.println(ipe.getMessage());
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-            System.out.println("-------------------------------------------------");
-            System.out.println(ioe.getMessage());
         }
     }
 
