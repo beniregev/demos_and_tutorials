@@ -5,37 +5,37 @@ import java.util.LinkedList;
 
 public class LinkedListExamples {
     public static void main(String[] args) {
-        LinkedList<String> linkedlist1 = new LinkedList<>();
+        LinkedList<String> linkedList = new LinkedList<>();
         // Add elements to linkedList using various add methods
-        linkedlist1.add("B");
-        linkedlist1.add("C");
-        linkedlist1.addLast("G");
-        linkedlist1.addFirst("A");
-        linkedlist1.add(3, "D");
-        linkedlist1.add("E");
-        linkedlist1.add("F");
+        linkedList.add("B");
+        linkedList.add("C");
+        linkedList.addLast("G");
+        linkedList.addFirst("A");
+        linkedList.add(3, "D");
+        linkedList.add("E");
+        linkedList.add("F");
         //print the linkedList
-        System.out.println("Linked list : " + linkedlist1);
+        System.out.println("Linked list : " + linkedList);
 
         //Create and initialize an ArrayList
         ArrayList<String> aList = new ArrayList<>();
         aList.add("H");
         aList.add("I");
         //add the ArrayList to linkedList using addAll method
-        linkedlist1.addAll(aList);
+        linkedList.addAll(aList);
         //print the linkedList
-        System.out.println("Linked list after adding ArrayList contents: " + linkedlist1);
+        System.out.println("Linked list after adding ArrayList contents: " + linkedList);
 
         // use various remove methods to remove elements from linkedList
-        linkedlist1.remove("B");
-        linkedlist1.remove(3);
-        linkedlist1.removeFirst();
-        linkedlist1.removeLast();
+        linkedList.remove("B");
+        linkedList.remove(3);
+        linkedList.removeFirst();
+        linkedList.removeLast();
         //print the altered list
-        System.out.println("Linked list after deletion: " + linkedlist1);
+        System.out.println("Linked list after deletion: " + linkedList);
 
         // use contains method to check for an element in the linkedList
-        boolean returnValue = linkedlist1.contains("G");
+        boolean returnValue = linkedList.contains("G");
         //print the results of contains method
         if (returnValue)
             System.out.println("List contains the element 'G' ");
@@ -43,17 +43,17 @@ public class LinkedListExamples {
             System.out.println("List doesn't contain the element 'G'");
 
         // use size methods to return Number of elements in the linked list
-        int size = linkedlist1.size();
+        int size = linkedList.size();
         System.out.println("Size of linked list = " + size);
 
         // Get and set elements from linked list
-        Object element = linkedlist1.get(3);
+        Object element = linkedList.get(3);
         System.out.println("Element returned by get() : " + element);
-        linkedlist1.set(3, "J");
-        System.out.println("Linked list after change : " + linkedlist1);
+        linkedList.set(3, "J");
+        System.out.println("Linked list after change : " + linkedList);
 
         //convert linkedList to Array using toArray methods
-        String[] list_array = linkedlist1.toArray(new String[linkedlist1.size()]);
+        String[] list_array = linkedList.toArray(new String[linkedList.size()]);
 
         for (String item : list_array) {
             System.out.print(item + "  ");
