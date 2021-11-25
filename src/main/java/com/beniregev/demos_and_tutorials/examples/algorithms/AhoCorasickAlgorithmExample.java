@@ -6,9 +6,23 @@ import java.util.*;
  * <div>
  *     <h1>Aho-Corasick algorithm Example</h1>
  *     <p>
+ *         Aho-Corasick Algorithm finds all words in O(n + m + z) time
+ *         where z is total number of occurrences of words in text. The
+ *         Aho–Corasick string matching algorithm formed the basis of
+ *         the original Unix command {@code fgrep}.
+ *     </p>
+ *     <p>
  *         Java program for implementation of
  *         Aho-Corasick algorithm for String
  *         matching
+ *     </p>
+ *     <p>
+ *         <div>For example, I want to find the following words in array {@code arr} in the given {@code textToSearch}.</div>
+ *         <code>
+ *             String arr[] = { "he", "she", "hers", "his" };
+ *             String textToSearch = "ahishers";
+ *         </code>
+ *         <p>I will build a mapping for the array of words I want to find.</p>
  *     </p>
  * </div>
  *
@@ -25,7 +39,7 @@ public class AhoCorasickAlgorithmExample {
     static int maxNumberOfCharacters = 26;
 
     // OUTPUT FUNCTION IS IMPLEMENTED USING out[]
-    // Bit i in this mask is one if the word with
+    // Bit i in this mask is one of the word with
     // index i appears when the machine enters
     // this state.
     static int[] out = new int[maxNumberOfStates];
