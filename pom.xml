@@ -19,6 +19,7 @@
         <spring-cloud.version>Hoxton.RC1</spring-cloud.version>
         <javafaker.version>0.17.2</javafaker.version>
         <mapdb.version>3.0.7</mapdb.version>
+        <apache.commons.collections4>4.4</apache.commons.collections4>
     </properties>
 
     <dependencies>
@@ -40,6 +41,12 @@
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
             <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${apache.commons.collections4}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/commons-beanutils/commons-beanutils -->
         <dependency>
