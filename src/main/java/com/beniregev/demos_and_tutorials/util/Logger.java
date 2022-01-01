@@ -3,7 +3,7 @@ package com.beniregev.demos_and_tutorials.util;
 import com.beniregev.demos_and_tutorials.exception.RestrictedLogLevel;
 import com.beniregev.demos_and_tutorials.exception.RestrictedLogLevel.LogLevel;
 import org.apache.commons.logging.Log;
-import org.apache.log4j.Level;
+import org.apache.logging.log4j.Level;
 import org.slf4j.spi.LocationAwareLogger;
 
 import java.io.PrintWriter;
@@ -277,13 +277,18 @@ public final class Logger {
     private static void logLog4j(final Log log, final Object message, final Throwable t,
                                  final RestrictedLogLevel rll) {
         Object wrappedLogger = ReflectionUtils.getFieldValue(log, "logger");
-        if (org.apache.log4j.Logger.class.isInstance(wrappedLogger)) {
-            org.apache.log4j.Logger log4jLogger = (org.apache.log4j.Logger) wrappedLogger;
-            // we must convert from the Slf4j int value to the Log4j enum value
+        if (org.apache.logging.log4j.core.Logger.class.isInstance(wrappedLogger)) {
+            org.apache.logging.log4j.core.Logger log4jLogger =
+                    (org.apache.logging.log4j.core.Logger) wrappedLogger;
+            // Convert the Slf4j int value to the Log4j enum value
             Level log4jLevel = forLevel(rll.level());
-            log4jLogger.log(FQCN, log4jLevel,
+            //log4jLogger.log(FQCN, log4jLevel,
+            //        String.valueOf(rll.logStackTrace() ? message : buildExceptionMessage(message, t)),
+            //        rll.logStackTrace() ? t : null);
+            log4jLogger.log(log4jLevel,
                     String.valueOf(rll.logStackTrace() ? message : buildExceptionMessage(message, t)),
                     rll.logStackTrace() ? t : null);
+
         } else {
             final LocationAwareLogger logAdapter = (LocationAwareLogger) wrappedLogger;
             logAdapter.log(null, FQCN, rll.level().toIntLevel() /* use Slf4j level value */,
