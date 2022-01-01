@@ -277,9 +277,9 @@ public final class Logger {
     private static void logLog4j(final Log log, final Object message, final Throwable t,
                                  final RestrictedLogLevel rll) {
         Object wrappedLogger = ReflectionUtils.getFieldValue(log, "logger");
-        if (org.apache.logging.log4j.core.Logger.class.isInstance(wrappedLogger)) {
-            org.apache.logging.log4j.core.Logger log4jLogger =
-                    (org.apache.logging.log4j.core.Logger) wrappedLogger;
+        if (org.apache.logging.log4j.Logger.class.isInstance(wrappedLogger)) {
+            org.apache.logging.log4j.Logger log4jLogger =
+                    (org.apache.logging.log4j.Logger) wrappedLogger;
             // Convert the Slf4j int value to the Log4j enum value
             Level log4jLevel = forLevel(rll.level());
             //log4jLogger.log(FQCN, log4jLevel,
