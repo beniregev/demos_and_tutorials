@@ -12,6 +12,24 @@ import java.lang.annotation.Annotation;
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 
+/**
+ * <div>
+ *     <p>
+ *         Logger utility that uses Log4J 2.
+ *     </p>
+ *     <p>
+ *         <ul><h3>References: </h3>
+ *             <li><a href="https://logging.apache.org/log4j/2.x/">Apache Log4j 2</a></li>
+ *             <li><a href="https://logging.apache.org/log4j/2.x/manual/api.html#Java_8_lambda_support_for_lazy_logging">Java 8 lambda support for lazy logging</a></li>
+ *             <li><a href="https://mkyong.com/logging/apache-log4j-2-tutorials/">Mkyong - Apache Log4j 2 Tutorials</a></li>
+ *             <li><a href="https://mkyong.com/spring-boot/spring-boot-log4j-2-example/">Mkyong - Spring Boot Log4j2 example</a></li>
+ *         </ul>
+ *     </p>
+ * </div>
+ *
+ * @author binyamin.regev
+ * @since jdk-1.8.0_162
+ */
 public final class Logger {
     private static final int EXCEPTION_BUFFER_SIZE = 512;
     private static final String FQCN = Logger.class.getName();
@@ -157,7 +175,7 @@ public final class Logger {
     }
 
     /**
-     * Access the Log4J logger directly so we can override the FQCN to make sure if we've turned on class and/or method
+     * Access the Log4J logger directly, so we can override the FQCN to make sure if we've turned on class and/or method
      * logging that the calling class is logged, not this one.
      *
      * @param logger     the logger
@@ -202,7 +220,7 @@ public final class Logger {
 
     /**
      * Logs the exception to the appropriate log level if the exception is annotated with
-     * <code>@RestrictedLogLevel</code>. Otherwise log normally.
+     * <code>@RestrictedLogLevel</code>. Otherwise, log normally.
      *
      * @param log      the logger
      * @param logLevel the desired log level
@@ -252,8 +270,8 @@ public final class Logger {
      *
      * @param log     the log
      * @param message the message
-     * @param t       a throwable object (may be null)
-     * @param rll     the <code>RestrictedLogLevel</code> object
+     * @param t       a throwable object (maybe null)
+     * @param rll     the {@link RestrictedLogLevel} object
      */
     private static void log(final Log log, final Object message, final Throwable t,
                             final RestrictedLogLevel rll) {
@@ -271,7 +289,7 @@ public final class Logger {
      *
      * @param log     the log
      * @param message the message
-     * @param t       a throwable object (may be null)
+     * @param t       a throwable object (maybe null)
      * @param rll     the <code>RestrictedLogLevel</code> object
      */
     private static void logLog4j(final Log log, final Object message, final Throwable t,
@@ -282,9 +300,7 @@ public final class Logger {
                     (org.apache.logging.log4j.Logger) wrappedLogger;
             // Convert the Slf4j int value to the Log4j enum value
             Level log4jLevel = forLevel(rll.level());
-            //log4jLogger.log(FQCN, log4jLevel,
-            //        String.valueOf(rll.logStackTrace() ? message : buildExceptionMessage(message, t)),
-            //        rll.logStackTrace() ? t : null);
+
             log4jLogger.log(log4jLevel,
                     String.valueOf(rll.logStackTrace() ? message : buildExceptionMessage(message, t)),
                     rll.logStackTrace() ? t : null);
@@ -329,7 +345,7 @@ public final class Logger {
      *
      * @param log     the log
      * @param message the message
-     * @param t       a throwable object (may be null)
+     * @param t       a throwable object (maybe null)
      * @param rll     the <code>RestrictedLogLevel</code> object
      */
     private static void logDefault(final Log log, final Object message, final Throwable t,
@@ -368,7 +384,7 @@ public final class Logger {
      * Builds a log message without including the entire stack trace of the given exception.
      *
      * @param message the message object
-     * @param t       the exception (may be null)
+     * @param t       the exception (maybe null)
      * @return a String which includes the message object and the exception's class name and message
      */
     private static Object buildExceptionMessage(final Object message, final Throwable t) {
