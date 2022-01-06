@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.algorithms;
+package com.beniregev.demos_and_tutorials.examples.algorithms.aho_corasick;
 
 import java.util.*;
 
@@ -7,7 +7,7 @@ import java.util.*;
  *     <h1>Aho-Corasick algorithm Example</h1>
  *     <p>
  *         Aho-Corasick Algorithm finds all words in O(n + m + z) time
- *         where z is total number of occurrences of words in text. The
+ *         where <em>z</em> is total number of occurrences of words in text. The
  *         Aho–Corasick string matching algorithm formed the basis of
  *         the original Unix command {@code fgrep}.
  *     </p>

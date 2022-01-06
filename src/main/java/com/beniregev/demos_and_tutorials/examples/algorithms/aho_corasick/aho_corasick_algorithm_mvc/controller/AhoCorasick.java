@@ -53,7 +53,7 @@ public class AhoCorasick {
             keywordInsertionCounter++;
         }
 
-        while(keywordInsertionCounter<keyword.length() && goTo(currState, Character.toString(keyword.charAt(keywordInsertionCounter)))==null){ //while state doesnt exist then create new node and go there
+        while(keywordInsertionCounter<keyword.length() && goTo(currState, Character.toString(keyword.charAt(keywordInsertionCounter)))==null){ //while state doesn't exist then create new node and go there
             currState.getNextStateCollection().put(Character.toString(keyword.charAt(keywordInsertionCounter)), new State(Character.toString(keyword.charAt(keywordInsertionCounter)), root));
             currState = goTo(currState, Character.toString(keyword.charAt(keywordInsertionCounter)));
 
@@ -77,7 +77,7 @@ public class AhoCorasick {
      * Create the fail fall back state of AhoCorasick trie
      */
     public void prepareFailFromFunction(){
-        LinkedList<State> queue = new LinkedList<State>(); //a linked list is needed for BFS
+        LinkedList<State> queue = new LinkedList<>(); //a linked list is needed for BFS
 
         for (State state : root.getNextStateCollection().values()) {
             queue.add(state);
@@ -87,13 +87,13 @@ public class AhoCorasick {
         State tempState;
 
         while(!queue.isEmpty()){
-            tempState = queue.pop(); //pop node and get the childrens
+            tempState = queue.pop(); //pop node and get the children
             for (State state: tempState.getNextStateCollection().values()) { //implementation differ based on nextStateCollection data structure
                 queue.add(state);
                 currState=failFrom(tempState);
                 while(goTo(currState, state.getStateContentCharacter())==null&&!currState.equals(root)){ //while fail
                     currState = failFrom(currState); //current state = failState
-                }//exit while when found a match from goTo of a failState or when it reach root
+                }   //  exit while when found a match from goto of a failState or when it reaches root
                 if(goTo(currState, state.getStateContentCharacter())!=null){
                     state.setFailState(goTo(currState, state.getStateContentCharacter()));
                 }
@@ -108,8 +108,8 @@ public class AhoCorasick {
         currState = root;
         lineNumberCounter=1;
         columnNumberCounter=1;
-        int intBuf = 0;
-        String sBuf = "";
+        int intBuf;
+        String sBuf;
         char cBuf;
 
         algoStart=System.nanoTime();
@@ -147,13 +147,13 @@ public class AhoCorasick {
      * prepare output for the matching keywords found
      */
     private void prepareOutput(State state, int lineNumber, int endColumnNumber){
-        if(state.getFullKeyword()!=null){//jika currNode = fullword
+        if(state.getFullKeyword()!=null){   //currNode = full word
             outputList.add(new Output(state.getFullKeyword(), lineNumber, endColumnNumber-(state.getFullKeyword().length()), endColumnNumber-1));
         }
 
-        while(!failFrom(state).equals(root)){//jika state tersebut punya fail node yang bukan root
+        while(!failFrom(state).equals(root)){   // state tersebut punya fail node yang bukan root
             state = failFrom(state);
-            if(state.getFullKeyword()!=null){//jika failState == fullword
+            if(state.getFullKeyword()!=null){   //  failState == full word
                 outputList.add(new Output(state.getFullKeyword(), lineNumber, endColumnNumber-(state.getFullKeyword().length()), endColumnNumber-1));
             }
         }

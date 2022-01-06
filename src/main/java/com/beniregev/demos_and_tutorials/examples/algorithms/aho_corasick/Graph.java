@@ -1,4 +1,6 @@
-package com.beniregev.demos_and_tutorials.examples.algorithms;
+package com.beniregev.demos_and_tutorials.examples.algorithms.aho_corasick;
+
+import com.beniregev.demos_and_tutorials.examples.algorithms.Vertex;
 
 import java.util.Collections;
 

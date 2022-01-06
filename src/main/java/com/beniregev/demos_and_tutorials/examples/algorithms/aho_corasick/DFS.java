@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.algorithms;
+package com.beniregev.demos_and_tutorials.examples.algorithms.aho_corasick;
 
 import java.util.*;
 
