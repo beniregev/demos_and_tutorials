@@ -4,6 +4,28 @@ import org.springframework.hateoas.Link;
 
 import java.util.*;
 
+/**
+ * What will be the output of the following program?
+ * A)
+ * X, A, B, F
+ * A, B, F, X
+ * X, A, B, F
+ * -------------------------------------------------
+ * B)
+ * A, B, F, X
+ * X, A, B, F
+ * A, B, F, X
+ * -------------------------------------------------
+ * C)
+ * X, A, B, F
+ * X, A, B, F
+ * A, B, F, X
+ * -------------------------------------------------
+ * D)
+ * X, A, B, F
+ * A, B, F, X
+ * A, B, X, F
+ */
 public class CollectionsOutput {
     public static void main(String[] args) {
         List<String> ls = new ArrayList<String>();
