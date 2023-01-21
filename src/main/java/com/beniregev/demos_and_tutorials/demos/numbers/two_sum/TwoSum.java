@@ -32,5 +32,10 @@ public class TwoSum {
         System.out.println("Result = " + Arrays.toString(solution.twoSum(new int[]{3, 2, 4}, 6)));
         System.out.println("Result = " + Arrays.toString(solution.twoSum(new int[]{3, 3}, 6)));
         System.out.println("Result = " + Arrays.toString(solution.twoSum(new int[]{3, 2, 15, 7, 11, 15}, 9)));
+
+        int[] my = new int[20];
+        for (int i = 0; i < 20; i++) {
+            System.out.println(my[i]);
+        }
     }
 }
