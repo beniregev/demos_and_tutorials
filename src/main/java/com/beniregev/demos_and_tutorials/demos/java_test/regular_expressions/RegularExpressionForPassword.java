@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.demos.java_test;
+package com.beniregev.demos_and_tutorials.demos.java_test.regular_expressions;
 
 /**
  * The registration form in the site of a certain organization has certain rules
