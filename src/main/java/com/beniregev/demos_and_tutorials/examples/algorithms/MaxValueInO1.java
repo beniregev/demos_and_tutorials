@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples;
+package com.beniregev.demos_and_tutorials.examples.algorithms;
 
 import java.util.Stack;
 
