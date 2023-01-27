@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples;
+package com.beniregev.demos_and_tutorials.examples.numbers;
 
 import java.util.ArrayList;
 import java.util.List;

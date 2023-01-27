@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.algorithms.linkedlist_reversal;
+package com.beniregev.demos_and_tutorials.demos.collections_api.linkedlist_reversal;
 
 public class LinkedListReversalExample {
     LinkedListReversal linkedListReversal = new LinkedListReversal();

@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples;
+package com.beniregev.demos_and_tutorials.examples.arrays;
 
 import java.util.Arrays;
 import java.util.Random;

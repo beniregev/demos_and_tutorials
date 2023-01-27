@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.pdf_file;
+package com.beniregev.demos_and_tutorials.examples.files_and_io.pdf_file;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.encryption.InvalidPasswordException;
