@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.java8_functional_interface;
+package com.beniregev.demos_and_tutorials.examples.java8_functional_interface;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +40,7 @@ import java.util.function.BiConsumer;
  * <h3>2.1 Understanding BiConsumer interface</h3>
  * <p>
  *     Create a java file in the
- *     <code>com.beniregev.demos_and_tutorials.java8_functional_interface</code>
+ *     <code>com.beniregev.demos_and_tutorials.examples.java8_functional_interface</code>
  *     package and add the following code to it.
  * </p>
  * <p>
@@ -58,7 +58,7 @@ import java.util.function.BiConsumer;
  * </p>
  *
  */
-public class BiConsumerDemo {
+public class BiConsumerExample {
     // example method 1
     private static void basic() {
         // BiConsumer lambda expression

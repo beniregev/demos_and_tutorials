@@ -1,8 +1,8 @@
 package com.beniregev.demos_and_tutorials.examples;
 
-public class Java8Tester {
+public class Java8_Tester {
     public static void main(String args[]) {
-        Java8Tester tester = new Java8Tester();
+        Java8_Tester tester = new Java8_Tester();
 
         //with type declaration
         MathOperation addition = (int a, int b) -> a + b;

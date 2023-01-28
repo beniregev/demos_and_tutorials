@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.java8timeapi;
+package com.beniregev.demos_and_tutorials.examples.java8_time_api;
 
 import java.time.*;
 import java.time.format.DateTimeFormatter;

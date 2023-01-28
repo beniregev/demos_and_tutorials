@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.streamapi;
+package com.beniregev.demos_and_tutorials.examples.java8_stream_api;
 
 import java.util.*;
 
