@@ -23,10 +23,8 @@ public class ArrayExamples {
 
     /**
      * <div>
-     *     It is the basic and one of the
-     *     simplest methods to populate an
-     *     array. Curly Braces {} are used
-     *     you define the elements of an
+     *     It is the basic and one of the simplest methods to populate an
+     *     array. Curly Braces {@code {}} are used you define the elements of an
      *     array.
      * </div>
      */
