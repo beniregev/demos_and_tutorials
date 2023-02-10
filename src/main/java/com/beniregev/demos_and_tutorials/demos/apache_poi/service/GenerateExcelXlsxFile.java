@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-public class GenerateExcelFilesXlsxFile {
+public class GenerateExcelXlsxFile {
     public static void main(String[] args) throws IOException {
         String[] columns = InputResources.INSTANCE.getColumns();
         List<Contact> contactList = InputResources.INSTANCE.getContacts();
@@ -56,7 +56,7 @@ public class GenerateExcelFilesXlsxFile {
         }
 
         //  Write/output the result to a file
-        FileOutputStream fileOut = new FileOutputStream("./output/contacts.xlsx");
+        FileOutputStream fileOut = new FileOutputStream("./data/contacts.xlsx");
         workbook.write(fileOut);
 
         //  Cleanup - Close the output file and the workbook
