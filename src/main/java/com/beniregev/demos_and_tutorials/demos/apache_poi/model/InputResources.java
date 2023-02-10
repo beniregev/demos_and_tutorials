@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @Getter
 public class InputResources {
+    public static final String EXCEL_FILE_PATH = "./data/";
     private final String[] columns = { "First Name", "Last Name", "Email", "Date of Birth" };
     private final List<Contact> contacts = new ArrayList<>();
 
