@@ -56,7 +56,7 @@ public class GenerateExcelXlsxFile {
         }
 
         //  Write/output the result to a file
-        FileOutputStream fileOut = new FileOutputStream("./data/contacts.xlsx");
+        FileOutputStream fileOut = new FileOutputStream("./data/Test_Data_Contacts.xlsx");
         workbook.write(fileOut);
 
         //  Cleanup - Close the output file and the workbook
