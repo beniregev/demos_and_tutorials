@@ -1,16 +1,15 @@
 package com.beniregev.demos_and_tutorials.demos.apache_poi.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.List;
 
 @Setter
 @Getter
 public class InputResources {
+
+
     public static final String EXCEL_FILE_PATH = "./data/";
     private final String[] columns = { "First Name", "Last Name", "Email", "Date of Birth" };
     private final List<Contact> contacts = new ArrayList<>();
