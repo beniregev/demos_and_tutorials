@@ -1,7 +1,15 @@
 package com.beniregev.demos_and_tutorials.examples.java8_time_api;
 
+import javax.validation.constraints.NotNull;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.apache.logging.log4j.util.Chars.LF;
+import static org.apache.logging.log4j.util.Chars.TAB;
 
 /**
  * <p>
@@ -155,15 +163,53 @@ public class TimeApiExample {
     private static LocalDate date;
     private static LocalDateTime dateTime;
 
-    public static void main(String[] args) {
-        TimeApiExample example = new TimeApiExample();
-        example.convertStringToLocalDateTime("2019-12-16 23:24:25");
-        example.getEndOfYearLocalDateTime();
-        example.demoStringBuffer();
-        example.spreadCallsInDay(22);
-    }
+    List<LocalDateTime> listLocalDateTimes = Arrays.asList(
+            LocalDateTime.now(),
+            LocalDateTime.now().minusDays(1),
+            LocalDateTime.now().minusDays(2),
+            LocalDateTime.now().minusDays(3),
+            LocalDateTime.now().minusDays(4),
+            LocalDateTime.MIN,
+            LocalDateTime.MIN.plusDays(1),
+            LocalDateTime.MIN.plusDays(2),
+            LocalDateTime.MIN.plusDays(3),
+            LocalDateTime.MIN.plusDays(4),
+            LocalDateTime.MAX,
+            LocalDateTime.MAX.minusDays(1),
+            LocalDateTime.MAX.minusDays(2),
+            LocalDateTime.MAX.minusDays(3),
+            LocalDateTime.MAX.minusDays(4),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIN),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIN).minusDays(1).minusHours(1).minusMinutes(10),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIN).minusDays(2).minusHours(2).minusMinutes(20),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIN).minusDays(3).minusHours(3).minusMinutes(30),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIN).minusDays(4).minusHours(4).minusMinutes(40),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MAX),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MAX).plusDays(1).plusHours(1).plusMinutes(10),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MAX).plusDays(2).plusHours(2).plusMinutes(20),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MAX).plusDays(3).plusHours(3).plusMinutes(30),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MAX).plusDays(4).plusHours(4).plusMinutes(40),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(10).plusHours(1).plusMinutes(10),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(20).plusHours(2).plusMinutes(10),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(30).plusHours(3).plusMinutes(10),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(40).plusHours(4).plusMinutes(10),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(1).minusHours(1).minusMinutes(11),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(2).minusHours(2).minusMinutes(22),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(3).minusHours(4).minusMinutes(33),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(4).minusHours(4).minusMinutes(44),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(2),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(3),
+            LocalDateTime.of(LocalDate.now(), LocalTime.NOON).minusDays(4),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT).minusDays(1),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT).minusDays(2),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT).minusDays(3),
+            LocalDateTime.of(LocalDate.now(), LocalTime.MIDNIGHT).minusDays(4)
+    );
 
     public void spreadCallsInDay(int callsPerDay) {
+        System.out.println(LF + "spreadCallsInDay( calls-per-day=" + callsPerDay + " )");
         final int HOURS_PER_DAY = 24;
         final int MINUTES_PER_HOUR = 60;
         final int AVERAGE_CALL_DURATION_IN_MINUTES = 5;
@@ -172,32 +218,32 @@ public class TimeApiExample {
         LocalDate dateOfCall = LocalDate.now();
         LocalTime timeCallStarted = LocalTime.MIN.plusMinutes(timeIntervalBetweenCallInMinutes);
         for (int i=1; i<=callsPerDay; i++) {
-            System.out.println("Call #" + i + ": \n\tStarted at " + timeCallStarted +
-                            "\n\tEnded at " + timeCallStarted.plusMinutes(AVERAGE_CALL_DURATION_IN_MINUTES) +
-                            "\n\tContact Start Time: " + timeCallStarted +
-                            "\n\tContact End Time: " + timeCallStarted.plusSeconds(150)
+            System.out.println(TAB + "Call #" + i + ": \n\tStarted at " + timeCallStarted +
+                    LF + TAB + TAB + "Ended at " + timeCallStarted.plusMinutes(AVERAGE_CALL_DURATION_IN_MINUTES) +
+                    LF + TAB + TAB + "Contact Start Time: " + timeCallStarted +
+                    LF + TAB + TAB + "Contact End Time: " + timeCallStarted.plusSeconds(150)
             );
-            System.out.println("dateOfCall = " + dateOfCall + " ; timeCallStarted = " + timeCallStarted);
+            System.out.println(TAB + "dateOfCall = " + dateOfCall + " ; timeCallStarted = " + timeCallStarted);
             timeCallStarted = timeCallStarted.plusMinutes(AVERAGE_CALL_DURATION_IN_MINUTES).plusMinutes(timeIntervalBetweenCallInMinutes);
-            System.out.println("AFTER: dateOfCall = " + dateOfCall + " ; timeCallStarted = " + timeCallStarted);
+            System.out.println(TAB + "AFTER: dateOfCall = " + dateOfCall + " ; timeCallStarted = " + timeCallStarted);
         }
 
     }
 
-
     public void convertStringToLocalDateTime(String stringDateTime) {
-        System.out.println("String Date: \"" + stringDateTime.substring(0, stringDateTime.indexOf(' ')) + "\"");
-        System.out.println("String Time: \"" + stringDateTime.substring(stringDateTime.indexOf(' ') + 1) + "\"");
+        System.out.println(LF + "convertStringToLocalDateTime( \"" + stringDateTime + "\" )");
+        System.out.println(TAB + "String Date: \"" + stringDateTime.substring(0, stringDateTime.indexOf(' ')) + "\"");
+        System.out.println(TAB + "String Time: \"" + stringDateTime.substring(stringDateTime.indexOf(' ') + 1) + "\"");
 
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String stringDate = stringDateTime.substring(0, stringDateTime.indexOf(' '));
         LocalDate localDate = LocalDate.parse(stringDate, formatterDate);
-        System.out.println("LocalDate: " + localDate + " ==> " + DateTimeFormatter.ISO_LOCAL_DATE.format(localDate));
+        System.out.println(TAB + "LocalDate: " + localDate + " ==> " + DateTimeFormatter.ISO_LOCAL_DATE.format(localDate));
 
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm:ss");
         String stringTime = stringDateTime.substring(stringDateTime.indexOf(' ') + 1);
         LocalTime localTime = LocalTime.parse(stringTime, formatterTime);
-        System.out.println("LocalTime: " + localTime + " ==> " + DateTimeFormatter.ISO_LOCAL_TIME.format(localTime));
+        System.out.println(TAB + "LocalTime: " + localTime + " ==> " + DateTimeFormatter.ISO_LOCAL_TIME.format(localTime));
 
         DateTimeFormatter formatterDateTime = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime localDateTime = LocalDateTime.parse(stringDateTime, formatterDateTime);
@@ -213,25 +259,134 @@ public class TimeApiExample {
         yy = 19
         yyyy = 2019
          */
-        System.out.println("LocalDateTime: " + localDateTime + " ==> " + localDateTime.format(DateTimeFormatter.ofPattern("eee eeee dd MM LLL LLLL yy yyyy")));
+        System.out.println(TAB + "LocalDateTime: " + localDateTime + " ==> " + localDateTime.format(DateTimeFormatter.ofPattern("eee eeee dd MM LLL LLLL yy yyyy")));
     }
 
     public void getEndOfYearLocalDateTime() {
+        System.out.println(LF + "getEndOfYearLocalDateTime(): ");
         LocalDate currentDate = LocalDate.now();        //  e.h. 2019-12-16
         DayOfWeek dow = currentDate.getDayOfWeek();     // MONDAY
         int dom = currentDate.getDayOfMonth();          // 16
         int doy = currentDate.getDayOfYear();           // 350
         Month month = currentDate.getMonth();           // getValue() = 12 ; name() = "DECEMBER"
         int year = currentDate.getYear();               // 2019
-        System.out.println("day of month = " + dom);
-        System.out.println("day of year = " + doy);
-        System.out.println("month of year = " + month.getValue() + ' ' + month.name());
-        System.out.println("year = " + year);
+        System.out.println(TAB+ "day of month = " + dom);
+        System.out.println(TAB+ "day of year = " + doy);
+        System.out.println(TAB+ "month of year = " + month.getValue() + ' ' + month.name());
+        System.out.println(TAB+ "year = " + year);
     }
 
     public void demoStringBuffer() {
+        System.out.println(LF + "demoStringBuffer(): ");
         StringBuffer strEndOfYear = new StringBuffer("-12-31 23:59:59.999").insert(0, LocalDate.now().getYear());
-        System.out.println("End of year = \"" + strEndOfYear.toString() + "\"");
+        System.out.println(TAB+ "End of year = \"" + strEndOfYear.toString() + "\"");
+    }
+
+    public void findDateTimesInRange(final LocalDateTime from, final LocalDateTime to) {
+        System.out.println(LF + "findDateTimesInRange( \"" + from + "\", \"" + to + "\")");
+
+        for (LocalDateTime toCheck : listLocalDateTimes) {
+            System.out.println(TAB + toCheck.format(DateTimeFormatter.ISO_DATE_TIME) + " in range? "
+                    + isWithinUsingCompareTo(toCheck, from, to));
+        }
+        List<LocalDateTime> inRange = listLocalDateTimes.stream()
+                .filter(el -> isWithinUsingCompareTo(el, from, to))
+                .collect(Collectors.toList());
+        System.out.println(TAB + "List of LocalDateTime in range: ");
+        inRange.stream().forEach(x -> System.out.println("\t\t" + x.format(DateTimeFormatter.ISO_DATE_TIME)));
+    }
+
+    public boolean isWithinUsingIsBeforeIsAfterAndEquals(@NotNull LocalDateTime toCheck,
+                                                         @NotNull LocalDateTime from,
+                                                         @NotNull LocalDateTime to) {
+        /*
+            toCheck = from
+            toCheck > from
+            toCheck < to
+            toCheck = to
+         */
+        return ((toCheck.equals(from) || toCheck.isAfter(from)) && (toCheck.isBefore(to) || toCheck.equals(to)));
+    }
+    public boolean isWithinUsingCompareTo(@NotNull LocalDateTime toCheck,
+                                          @NotNull LocalDateTime from,
+                                          @NotNull LocalDateTime to) {
+        return toCheck.compareTo(from) >= 0 && toCheck.compareTo(to) <= 0;
+    }
+
+    public void isWithinUsingChronoUnitBetween(@NotNull LocalDateTime toCheck,
+                                                  @NotNull LocalDateTime from,
+                                                  @NotNull LocalDateTime to) {
+        System.out.println(LF + "isWithinUsingChronoUnitBetween( \"" + from + "\", \"" + to + "\")");
+        /*
+            between(param1, param2)
+                returns a positive number (0 <= n) when (param1 <= param2),
+                e.g., param2-param1
+            In these examples:
+                1. (ChronoUnit.MINUTES.between(from, toCheck) >= 0) when (from <= toCheck)
+                2. (ChronoUnit.MINUTES.between(toCheck, to) >= 0) when (toCheck <= to)
+         */
+        System.out.println(TAB + toCheck.format(DateTimeFormatter.ISO_DATE_TIME) + " - "
+                + from.format(DateTimeFormatter.ISO_DATE_TIME) + " = "
+                + (ChronoUnit.MINUTES.between(from, toCheck) >= 0)
+                + LF + TAB + to.format(DateTimeFormatter.ISO_DATE_TIME) + " - "
+                + toCheck.format(DateTimeFormatter.ISO_DATE_TIME) + " = "
+                + (ChronoUnit.MINUTES.between(toCheck, to) >= 0)
+        );
 
     }
+
+    /**
+     *  <div>
+     *      <div>
+     *          Check if {@link LocalDateTime} value {@code toCheck} occurs within
+     *          {@code numberOfMinutes} <b>before or after</b> {@link LocalDateTime}
+     *          value of {@code compareTo}.
+     *      </div>
+     *      <div>
+     *          <b>Do not use</b> {@code Math.abs(integer)} with
+     *          {@code ChronoUnit.MINUTES.between(Temporal, Temporal)}
+     *          to determine if a date & time {@link java.time.temporal.Temporal}
+     *          occurs within a range between {@code startInterval}
+     *          and {@code endInterval}. Because, the {@code abs(int)}
+     *          method will cancel the indication of which {@link java.time.temporal.Temporal}
+     *          occur first.
+     *      </div>
+     *      <div>
+     *          <ul>{@code ChronoUnit.XXXXXXX.between(Temporal1, Temporal2)} returns:
+     *              <li>positive number (0 < n) if Temporal1 < Temporat2</li>
+     *              <li>Negative number (n < 0) if Temporal1 > Temporat2</li>
+     *              <li>0 (n == 0) if Temporal1 == Temporat2</li>
+     *          </ul>
+     *      </div>
+     *  </div>
+     * @param toCheck {@link LocalDateTime} value to compare with parameter {@code compareTo}
+     * @param compareWith {@link LocalDateTime} value to compare {@code toCheck} parameter to.
+     * @param numberOfMinutes {@code int} number of minutes to check if existsd between {@code toCheck} and {@code compareTo} parameters.
+     * @return
+     */
+    public boolean isWithinNumberOfMinutesRangeUsingChronoUnitBetween(@NotNull LocalDateTime toCheck,
+                                                                      @NotNull LocalDateTime compareWith,
+                                                                      final int numberOfMinutes) {
+        return Math.abs(ChronoUnit.MINUTES.between(compareWith, toCheck)) <= numberOfMinutes;
+    }
+
+    public static void main(String[] args) {
+        TimeApiExample example = new TimeApiExample();
+        example.convertStringToLocalDateTime("2019-12-16 23:24:25");
+        example.getEndOfYearLocalDateTime();
+        example.demoStringBuffer();
+        example.spreadCallsInDay(22);
+        example.getListLocalDateTimes().stream().forEach(x -> System.out.println("\t" + x));
+        example.findDateTimesInRange(LocalDateTime.of(LocalDate.now(), LocalTime.MIN),
+                LocalDateTime.of(LocalDate.now(), LocalTime.MAX));
+        example.isWithinUsingChronoUnitBetween(LocalDateTime.now(),
+                LocalDateTime.of(LocalDate.now(), LocalTime.MIN),
+                LocalDateTime.of(LocalDate.now(), LocalTime.MAX));
+    }
+
+    public List<LocalDateTime> getListLocalDateTimes() {
+        return listLocalDateTimes;
+    }
+
+
 }
