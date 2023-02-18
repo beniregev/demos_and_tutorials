@@ -37,24 +37,43 @@ public class Java8ManipulatingDataOfListElementsUsingStreamApiExample {
             new User(9, faker.name().firstName(), faker.name().lastName(), "", LocalDate.now())
     );
 
-    public void updateUserEmailByNameUsingStreamAPI () {
-        listUsers.stream().forEach(u -> System.out.println("*  " + u.getId() + ", "
-                + u.getFirstName() + ", " + u.getLastName() + ", " + u.getEmail() + ", "
-                + u.getDateOfBirth()));
-
+    public void updateUserEmailByNamesUsingStreamAPI1() {
+        System.out.println("-------------------------------------------------");
+        System.out.println("updateUserEmailByNamesUsingStreamAPI1(): ");
         List<User> newListUsers = listUsers.stream()
                 .map(u -> new User(u.getId(), u.getFirstName(), u.getLastName(),
                         u.getFirstName() + "." + u.getLastName() + "@domain.com",
                         u.getDateOfBirth()))
                 .collect(Collectors.toList());
-        newListUsers.stream().forEach(u -> System.out.println("*  " + u.getId() + ", "
+        newListUsers.stream().forEach(u -> System.out.println("\t*  " + u.getId() + ", "
                 + u.getFirstName() + ", " + u.getLastName() + ", " + u.getEmail() + ", "
                 + u.getDateOfBirth()));
 
     }
 
+    public void updateUserEmailByNamesUsingStreamAPI2() {
+        System.out.println("\n-------------------------------------------------");
+        System.out.println("updateUserEmailByNamesUsingStreamAPI2(): ");
+        List<User> modified = listUsers.stream()
+                .map(s -> new User(s.getId(), s.getFirstName(), s.getLastName(), s.getEmail(), s.getDateOfBirth())) // '.map(SampleDTO::new)' with copy constructor
+                .peek(s -> s.setEmail(s.getFirstName() + "." + s.getLastName() + "@domain.com"))
+                .collect(Collectors.toList());
+        modified.stream().forEach(u -> System.out.println("\t*  " + u.getId() + ", "
+                + u.getFirstName() + ", " + u.getLastName() + ", " + u.getEmail() + ", "
+                + u.getDateOfBirth()));
+    }
+
     public static void main(String[] args) {
         Java8ManipulatingDataOfListElementsUsingStreamApiExample example = new Java8ManipulatingDataOfListElementsUsingStreamApiExample();
-        example.updateUserEmailByNameUsingStreamAPI();
+        System.out.println("The original Users List: ");
+        example.getListUsers().stream().forEach(u -> System.out.println("*  " + u.getId() + ", "
+                + u.getFirstName() + ", " + u.getLastName() + ", " + u.getEmail() + ", "
+                + u.getDateOfBirth()));
+        example.updateUserEmailByNamesUsingStreamAPI1();
+        example.updateUserEmailByNamesUsingStreamAPI2();
+    }
+
+    public List<User> getListUsers() {
+        return listUsers;
     }
 }
