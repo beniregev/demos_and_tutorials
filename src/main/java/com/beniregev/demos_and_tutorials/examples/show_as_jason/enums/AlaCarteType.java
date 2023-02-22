@@ -12,8 +12,8 @@ public enum AlaCarteType {
 
     private final String alaCarte;
 
-    AlaCarteType(String value) {
-        this.alaCarte = value;
+    AlaCarteType(String alaCarte) {
+        this.alaCarte = alaCarte;
     }
 
     @JsonCreator

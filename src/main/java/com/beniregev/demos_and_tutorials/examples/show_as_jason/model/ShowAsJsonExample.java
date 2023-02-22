@@ -10,18 +10,18 @@ import java.util.List;
 public class ShowAsJsonExample {
 
     public static void main(String[] args) {
-        List<AlaCarteType> alaCarteTypeList = new ArrayList<AlaCarteType>();
+        List<AlaCarteType> alaCarteTypeList = new ArrayList<>();
         alaCarteTypeList.add(AlaCarteType.create(1));
         alaCarteTypeList.add(AlaCarteType.create(3));
         alaCarteTypeList.add(AlaCarteType.create(5));
         alaCarteTypeList.add(AlaCarteType.create(0));
 
-        List<IntegerRange> siteRangesList = new ArrayList<IntegerRange>();
+        List<IntegerRange> siteRangesList = new ArrayList<>();
         siteRangesList.add(new IntegerRange());
         siteRangesList.add(new IntegerRange());
         siteRangesList.add(new IntegerRange());
 
-        List<BundleType> bundlesList = new ArrayList<BundleType>();
+        List<BundleType> bundlesList = new ArrayList<>();
         bundlesList.add(BundleType.ENHANCED_VOICE);
         bundlesList.add(BundleType.SHARED_WORKSPACE);
         bundlesList.add(BundleType.CONTACT_CENTER);
