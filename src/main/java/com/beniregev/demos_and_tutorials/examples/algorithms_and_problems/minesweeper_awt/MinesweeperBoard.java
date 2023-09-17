@@ -1,4 +1,4 @@
-package com.beniregev.demos_and_tutorials.examples.algorithms_and_problems.minesweeper2;
+package com.beniregev.demos_and_tutorials.examples.algorithms_and_problems.minesweeper_awt;
 
 
 import java.awt.BorderLayout;
@@ -157,11 +157,8 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
     private int buttonWidth = 10;
 
     private int buttonHeight = 10;
-
     private int mines = 8;
-
     int[][] mineArray;
-
     JButton[][] button;
     JPanel mineSpan = null;
 
@@ -218,10 +215,7 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
         int[] mine = getRandomNos(buttonWidth, buttonHeight, mines);
         int count = 1;
         for (int i = 0; i < buttonWidth; i++) {
-            for (int j = 0; j < buttonHeight; j++)
-
-            {
-
+            for (int j = 0; j < buttonHeight; j++) {
                 for (int k = 0; k < mine.length && mine[k] != 0; k++) {
                     if (count == mine[k]) {
                         mineArray[i][j] = 9;
@@ -236,7 +230,6 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
         for (int i = 0; i < buttonWidth; i++) {
             for (int j = 0; j < buttonHeight; j++) {
                 boxCount = 0;
-
                 if (mineArray[i][j] != 9) {
                     if (i > 0 && j > 0 && mineArray[i - 1][j - 1] == 9)
                         boxCount++;
@@ -273,7 +266,6 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
             }
             System.out.println();
         }
-
     }
 
     public int[] getRandomNos(int buttonWidth, int buttonHeight, int mines) {
@@ -298,7 +290,6 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
     }
 
     public void actionPerformed(ActionEvent ae) {
-
         if (ae.getSource() == smiley) {
             reset();
         } else {
@@ -308,17 +299,13 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
                         if (mineArray[i][j] == 9) {
                             for (int k = 0; k < buttonWidth; k++) {
                                 for (int l = 0; l < buttonHeight; l++) {
-
                                     if (mineArray[k][l] == 9) {
                                         button[k][l].setIcon(pitImageIcon);
                                     }
-
                                     button[k][l].removeActionListener(this);
                                     button[k][l].removeMouseListener(this);
-
                                 }
                             }
-
                         }
                         if (mineArray[i][j] == 1) {
                             button[i][j].setIcon(oneImageIcon);
@@ -354,7 +341,6 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
         arrX[cntEmpty] = boxX;
         arrY[cntEmpty] = boxY;
         cntEmpty++;
-
         for (int i = 0; i < cntEmpty; i++) {
             if (arrX[i] > 0) {
                 int xxX = arrX[i] - 1;
@@ -443,7 +429,6 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
                         smiley.setIcon(smileyImageIcon);
                     }
                 }
-
             }
 
     }
@@ -459,12 +444,10 @@ public class MinesweeperBoard implements ActionListener, MouseListener {
 
     public void mouseEntered(MouseEvent arg0) {
         // TODO Auto-generated method stub
-
     }
 
     public void mouseExited(MouseEvent arg0) {
         // TODO Auto-generated method stub
-
     }
 
     public static void main(String[] args) {
