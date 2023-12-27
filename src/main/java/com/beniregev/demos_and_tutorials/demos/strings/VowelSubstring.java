@@ -1,5 +1,26 @@
 package com.beniregev.demos_and_tutorials.demos.strings;
 
+/**
+ * <div>
+ *     <p>
+ *         Given a {@link String} and a length of the substrings. Write
+ *         the method {@code findSubstring} to find and return the first
+ *         substring that contains to most vowels in it. Each vowel can
+ *         appear more than once in any substring.
+ *     </p>
+ *     <p>
+ *         In your method also find where in the {@link String} that
+ *         substring starts from.
+ *     </p>
+ *     <p>
+ *         Note: a vowel is only one of these 5 letters: a, e, i, o, u.
+ *     </p>
+ *     <p>
+ *         If the string doesn't contain any vowels the your method will
+ *         return &quot;Not found!&quot; without the quotes.
+ *     </p>
+ *  </div>
+ */
 public class VowelSubstring {
     public static String findSubstring(String s, int k) {
         // Write your code here
